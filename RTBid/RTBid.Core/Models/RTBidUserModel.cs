@@ -15,12 +15,19 @@ namespace RTBid.Core.Models
         public string SecurityStamp { get; set; }
 
         public string Address { get; set; }
-        public string Telephone { get; set; }
-        public string Email { get; set; }
 
-        public int Age { get; set; }
-        public decimal? AccountBalance { get; set; }
+
+
         public DateTime CreatedDate { get; set; }
         public DateTime DeletedDate { get; set; }
+
+
+        public class Profile : RTBidUserModel
+        {
+            public string Email { get; set; }
+            public string Telephone { get; set; }
+            public int Age { get; set; }
+            public decimal? AccountBalance { get; set; }
+        }
     }
 }
