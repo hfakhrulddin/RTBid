@@ -1,0 +1,6 @@
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\RTBid.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\RTBid.Core.pdb
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\obj\Debug\RTBid.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Core\obj\Debug\RTBid.Core.pdb

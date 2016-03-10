@@ -1,0 +1,16 @@
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\RTBid.Data.dll.config
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\RTBid.Data.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\RTBid.Data.pdb
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\EntityFramework.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\RTBid.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\RTBid.Core.pdb
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\EntityFramework.xml
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.csprojResolveAssemblyReference.cache
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.dll
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.pdb
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new1.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.csproj.GenerateResource.Cache
