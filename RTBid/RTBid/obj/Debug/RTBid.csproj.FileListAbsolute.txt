@@ -60,3 +60,6 @@ C:\Div\Origin\RTBid\RTBid\RTBid\bin\EntityFramework.dll
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\EntityFramework.SqlServer.dll
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\EntityFramework.xml
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\EntityFramework.SqlServer.xml
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\System.Web.Http.Owin.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Stripe.net.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\System.Web.Http.Owin.xml

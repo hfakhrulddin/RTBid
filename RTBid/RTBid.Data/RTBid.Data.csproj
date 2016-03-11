@@ -53,11 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\AuthorizationRepository.cs" />
     <Compile Include="Infrastructure\DatabaseFactory.cs" />
     <Compile Include="Infrastructure\IDatabaseFactory.cs.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
     <Compile Include="Infrastructure\RTBidDataContext.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Infrastructure\UserStore.cs" />
     <Compile Include="Migrations\201603100052152_new1.cs" />
     <Compile Include="Migrations\201603100052152_new1.Designer.cs">
       <DependentUpon>201603100052152_new1.cs</DependentUpon>

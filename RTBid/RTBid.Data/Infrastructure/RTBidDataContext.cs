@@ -122,5 +122,7 @@ namespace RTBid.Data.Infrastructure
     
             base.OnModelCreating(modelBuilder);
             }
-        }
+
+        public System.Data.Entity.DbSet<RTBid.Core.Domain.Category> Categories { get; set; }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RTBid.Data.Infrastructure
 {
-    public class DatabaseFactory
+    public class DatabaseFactory : Disposable, IDatabaseFactory
     {
         private readonly RTBidDataContext _dataContext;
 
