@@ -18,7 +18,7 @@ namespace RTBid.Data.Infrastructure
             //SQL Tables
             public IDbSet<Auction> Auctions { get; set; }
             public IDbSet<Bid> Bids { get; set; }
-            public IDbSet<Category> Categorys { get; set; }
+            public IDbSet<Category> Categories { get; set; }
             public IDbSet<Comment> Comments { get; set; }
             public IDbSet<Product> Products { get; set; }
             public IDbSet<Purchase> Purchases { get; set; }
@@ -36,13 +36,6 @@ namespace RTBid.Data.Infrastructure
                             .HasMany(a => a.Comments)
                             .WithRequired(c => c.Auction)
                             .HasForeignKey(c => c.AuctionId)
-                            .WillCascadeOnDelete(false);
-
-            //Product-Bids
-            modelBuilder.Entity<Product>()
-                            .HasMany(p => p.Bids)
-                            .WithRequired(b => b.Product)
-                            .HasForeignKey(b => b.ProductId)
                             .WillCascadeOnDelete(false);
 
             //Product-Auctions
@@ -122,7 +115,5 @@ namespace RTBid.Data.Infrastructure
     
             base.OnModelCreating(modelBuilder);
             }
-
-        public System.Data.Entity.DbSet<RTBid.Core.Domain.Category> Categories { get; set; }
     }
 }

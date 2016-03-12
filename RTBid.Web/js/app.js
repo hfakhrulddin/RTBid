@@ -9,8 +9,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
         .state('home', { url: '/home', templateUrl: '/templates/home/home.html', controller: 'HomeController' })
         .state('register', { url: '/register', templateUrl: '/templates/register/register.html', controller: 'RegisterController' })
         .state('app', { url: '/app', templateUrl: '/templates/app/app.html', controller: 'AppController' })
-            .state('app.dashboard', { url: '/dashboard', templateUrl: '/templates/app/dashboard/dashboard.html', controller: 'DashboardController' })
-
+            .state('app.dashboard', { url: '/dashboard', templateUrl: '/templates/app/dashboard/dashboard.html', controller: 'DashboardController' });
 });
 
 angular.module('app').run(function (AuthenticationService) {

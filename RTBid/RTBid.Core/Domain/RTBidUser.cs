@@ -19,10 +19,11 @@ namespace RTBid.Core.Domain
         public string Telephone { get; set; }
         public string Email { get; set; }
 
-        public int Age { get; set; }
+        //public int Age { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public decimal? AccountBalance { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime DeletedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
 
         public virtual ICollection<UserRole> Roles { get; set; }
         public virtual ICollection<Product> Products { get; set; }

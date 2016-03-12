@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 namespace RTBid.Data.Repository
 {
     public class AuctionRepository : Repository<Auction>, IAuctionRepository
-
     {
         public AuctionRepository(IDatabaseFactory databaseFactory) : base(databaseFactory)
         {

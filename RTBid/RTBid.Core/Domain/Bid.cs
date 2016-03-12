@@ -11,7 +11,6 @@ namespace RTBid.Core.Domain
         public int BidId { get; set; }
         public int AuctionId { get; set; }
         public int UserId { get; set; }
-        public int ProductId { get; set; }
 
         public decimal CurrentAmount { get; set; }
         public string AttachedText { get; set; }
@@ -19,7 +18,6 @@ namespace RTBid.Core.Domain
         public DateTime TimeStamp { get; set; }
 
         public virtual Auction Auction { get; set; }
-        public virtual Product Product { get; set; }
         public virtual RTBidUser RTBidUser { get; set; }
     }
 }

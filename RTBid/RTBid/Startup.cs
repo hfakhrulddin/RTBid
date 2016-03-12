@@ -82,11 +82,11 @@ namespace RTBidManager.Api
             container.Register<IRTBidUserRepository, RTBidUserRepository>();
             container.Register<IUserAuctionRepository, UserAuctionRepository>();
 
-            //// Authorization Methoud Mapping 
+            //// Authorization Method Mapping 
             container.Register<IUserStore<RTBidUser, int>, UserStore>(Lifestyle.Scoped);
             container.Register<IAuthorizationRepository, AuthorizationRepository>(Lifestyle.Scoped);
 
-            /////The Payment Methoud Mapping
+            /////The Payment Method Mapping
             container.Register<IPaymentService, StripePaymentService>();
 
             // more code to facilitate a scoped lifestyle

@@ -39,7 +39,8 @@ namespace RTBid.Data.Infrastructure
                 throw new ArgumentNullException(nameof(user));
 
             return Task.Factory.StartNew(() => {
-                //user.Id = Guid.NewGuid();
+                //user.Id = Guid.NewGuid(); // CR
+                user.CreatedDate = DateTime.Now;
                 DataContext.RTBidUsers.Add(user);
                 DataContext.SaveChanges();
             });

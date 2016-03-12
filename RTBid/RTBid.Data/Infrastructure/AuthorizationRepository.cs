@@ -26,7 +26,7 @@ namespace RTBid.Data.Infrastructure
                 _userManager = new UserManager<RTBidUser, int>(userStore);
             }
 
-            ///Register Methoud -Register
+            ///Register Method -Register
             public async Task<IdentityResult> RegisterUser(RegistrationModel model)
             {
                 var wingmanUser = new RTBidUser
@@ -40,7 +40,7 @@ namespace RTBid.Data.Infrastructure
                 return result;
             }
 
-            ///Find User Methoud-Login
+            ///Find User Method-Login
             public async Task<RTBidUser> FindUser(string username, string password)
             {
                 return await _userManager.FindAsync(username, password);

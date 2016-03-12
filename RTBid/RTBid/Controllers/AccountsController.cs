@@ -18,13 +18,13 @@ namespace RTBid.Controllers
 {
     public class AccountsController : BaseApiController
     {
-        private readonly IPaymentService _keyPaymentService;
+        private readonly IPaymentService _paymentService;
         private readonly IAuthorizationRepository _authRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public AccountsController(IPaymentService keyPaymentService, IAuthorizationRepository authRepository, IRTBidUserRepository rtbidUserRepository, IUnitOfWork unitOfWork) : base(rtbidUserRepository)
+        public AccountsController(IPaymentService paymentService, IAuthorizationRepository authRepository, IRTBidUserRepository rtbidUserRepository, IUnitOfWork unitOfWork) : base(rtbidUserRepository)
         {
-            _keyPaymentService = keyPaymentService;
+            _paymentService = paymentService;
             _authRepository = authRepository;
             _unitOfWork = unitOfWork;
         }
@@ -81,7 +81,7 @@ namespace RTBid.Controllers
         [Route("api/accounts/payforkeys")]
         public IHttpActionResult PayForKeys(PaymentRequest request)
         {
-            _keyPaymentService.BuyItem(CurrentUser, request.token, request.numberOfKeys);
+            _paymentService.BuyItem(CurrentUser, request.token, request.numberOfKeys);
 
             return Ok();
         }

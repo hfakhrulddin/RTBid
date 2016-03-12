@@ -1,4 +1,4 @@
-﻿<link href="../../css/register/register.css" rel="stylesheet" />
+﻿<!--<link href="../../css/register/register.css" rel="stylesheet" />
 <nav class="navbar navbar-default" id="navbar">
     </nav>
             <div class="header">
@@ -7,30 +7,94 @@
                         <h1>RT-Bid</h1>
                     </div>
                     <div class="col-md-4" id="col-md-4">
-                        <a href="/#/register">Get Started</a>
+                        <a href="/#/home">Main</a>
                         <a href="#">New</a> 
                         <a href="#">Contact Us</a>
                         </div>
-                        </div>
+    </div>
                 </div>
            
             <div class="container">
                 <div class="inner">
-                    <h1>Welcome</h1>
+                    <h1>Start bidding today!</h1>
                     <h3>Amazing Deals 24/7</h3>
 
                     <form action="">
-                        <lagend>Login to your account</lagend><br>
+                        <h3>Register</h3><br>
 
                         <label><span class="glyphicon glyphicon-user"></span></label>
-                        <input type="text" placeholder='Username' class="input" ng-model="loginData.username"/><br>
+                        <input type="text" id="inputUsername" class="input" placeholder="Username" ng-model="registration.Username" required autofocus><br>
+
+                        <label><span class="glyphicon glyphicon-lock"></span></label> 
+                        <input type="password" id="inputPassword" class="input" placeholder="Password" ng-model="registration.Password" required><br>
+
+                        <label><span class="glyphicon glyphicon-user"></span></label>
+                        <input type="password" id="confirmPassword" class="input" placeholder="Confirm Password" ng-model="registration.ConfirmPassword" required><br>
 
                         <label><span class="glyphicon glyphicon-lock"></span></label>
-                        <input type="password" placeholder="password" class="input" ng-model="loginData.password"/><br>
+                        <input type="email" id="inputEmail" class="input" placeholder="Email address" ng-model="registration.EmailAddress" required autofocus><br>
 
-                        <button type="submit" class="button" ng-click="login()">Sign in</button>
+                        <button type="submit" class="button" id="registerButton" ng-click="register()">Register</button>
 
-                        <br><h4 class="glyphicon glyphicon-user"><a href="/#/register">Register Here.</a></h4>
+ 
                     </form>
                 </div>
+            </div>-->
+
+
+<link href="../../css/register/register.css" rel="stylesheet" />
+<!--<div class="container main-container">-->
+
+    <div class="header">
+        <div class="row">
+            <div class="col-md-4">
+                <h1>RT-Bid</h1>
             </div>
+            <div class="col-md-4" id="col-md-4">
+                <a href="/#/home">Main</a>
+                <a href="#">New</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </div>
+
+        <!--<fieldset>-->
+            <div class="container">
+                <div class="inner">
+                    <h1>Start bidding today!</h1>
+                    <h3>Amazing Deals 24/7</h3>
+                    <form class="form-horizontal">
+                    
+                            <h3>Register</h3><br>
+
+                            <label><span class="glyphicon glyphicon-user"></span></label>
+                            <input type="text" id="inputUsername" class="input" placeholder="Username" ng-model="registration.Username" required autofocus><br>
+
+                            <label><span class="glyphicon glyphicon-lock"></span></label>
+                            <input type="password" id="inputPassword" class="input" placeholder="Password" ng-model="registration.Password" required><br>
+
+                            <label><span class="glyphicon glyphicon-user"></span></label>
+                            <input type="password" id="confirmPassword" class="input" placeholder="Confirm Password" ng-model="registration.ConfirmPassword" required><br>
+
+                            <label><span class="glyphicon glyphicon-lock"></span></label>
+                            <input type="email" id="inputEmail" class="input" placeholder="Email address" ng-model="registration.EmailAddress" required autofocus><br>
+
+                            <button type="submit" class="button" id="registerButton" ng-click="register()">Register</button>
+                  
+
+                        </form>
+                </div>
+            </div>
+        <!--</fieldset>-->
+<!--</div>-->
+                    
+                  
+      
+
+                    
+                   
+
+                    
+            
+
+                   
