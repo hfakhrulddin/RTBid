@@ -1,43 +1,54 @@
-﻿<div class="dashboard">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <ul class="dashboard-tabs">
-                <li class="active">
-                    <a href="#profile" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-user"></span>
-                        <h4>Profile</h4>
-                    </a>
-                </li>
-                <li>
-                    <a href="#statistics" class="btn" aria-controls="statistics" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-time"></span>
-                        <h4>Statistics</h4>
-                    </a>
-                </li>
-                <li>
-                    <a href="#donate" class="btn" aria-controls="donate" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-usd"></span>
-                        <h4>Donate</h4>
-                    </a>
-                </li>
-                <li>
-                    <a href="#settings" class="btn" aria-controls="settings" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-cog"></span>
-                        <h4>Settings</h4>
-                    </a>
-                </li>
-                <li>
-                    <a href="#help" class="btn" aria-controls="help" role="tab" data-toggle="tab">
-                        <span class="glyphicon glyphicon-question-sign"></span>
-                        <h4>Help</h4>
-                    </a>
-                </li>
-            </ul>
+﻿<link href="../../css/app/app.css" rel="stylesheet" />
+
+<br />
+    <div class="col-md-offset-2 col-md-8">
+    
+        <div class="panel-heading text-center">
+            <h1>RT-Bid</h1>
         </div>
-        <div class="col-xs-12 col-sm-10 content">
-            <div class="container-fluid">
-                <div ui-view></div>
+  
+</div>
+    <div class="dashboard">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <ul class="dashboard-tabs">
+                    <li class="active">
+                        <a href="/#/app/dashboard" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                            <span class="glyphicon glyphicon-dashboard"></span>
+                            <h4>Dashboard</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/app/categories" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                            <span class="glyphicon glyphicon-filter"></span>
+                            <h4>Categories</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/app/list" class="btn" aria-controls="statistics" role="tab" data-toggle="tab">
+                            <span class="glyphicon glyphicon-comment"></span>
+                            <h4>ChatRoom</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/app/profile" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                            <span class="glyphicon glyphicon-user"></span>
+                            <h4>Profile</h4>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/app/profile" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            <h4>Contact Us</h4>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-10 content">
+                <div class="container-fluid">
+                    <div ui-view></div>
+                    <div class="main" ng-view></div>
+                </div>
             </div>
         </div>
     </div>
-</div>

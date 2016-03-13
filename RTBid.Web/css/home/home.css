@@ -1,5 +1,5 @@
 ﻿body{height: 700px;}
-.container{background:url('http://nextlawgroup.com/wp-content/uploads/2013/07/Facebook-World-Network-HD-Wallpaper.jpg') center; width: 100%;}
+/*.container{background:url('http://nextlawgroup.com/wp-content/uploads/2013/07/Facebook-World-Network-HD-Wallpaper.jpg'); width: 100%; position: center;resize:inherit;}*/
 .col-md-4 h1{ color : #9f00a7; font-family: calibri, arial; font-weight: bold; font-size: 30px; position: relative; left: 30px;} 
 .header{background: white; width : 100%; }
 .header a{color: rgb(100,100,100); padding: 20px; position: relative; top : 30px;font-family: calibri, arial;font-weight: 900;  }
@@ -8,7 +8,7 @@
 
 /*container design*/
 .control-label{float: left;}
-.container .inner{width: 480px; margin: 100px auto; border : 1px solid none; background: rgba(55,55,55, 0.4); padding: 10px; -webkit-transform: skew(30deg,10deg);-moz-transform: skew(30deg,10deg); -o-transform: skew(30deg,10deg); transition-duration: 0.7s;}
+.container .inner{position: center; width: 480px; margin: 100px auto; border : 1px solid none; background: rgba(55,55,55, 0.4); padding: 10px; -webkit-transform: skew(30deg,10deg);-moz-transform: skew(30deg,10deg); -o-transform: skew(30deg,10deg); transition-duration: 0.7s;}
 .container .inner:hover{-webkit-transform:skew(0deg,0deg); -moz-transform:skew(0deg,0deg);-o-transform:skew(0deg,0deg);transition-duration: 0.7s; background: transparent;}
 .inner h1{color : rgb(200,200,200); font-family: calibri, arial; font-weight: bold; text-align: center; font-size: 40px}
 .inner h3{color: rgb(200,200,200); font-size: 18px; font-family: calibri; text-align: center; margin-top: -5px}

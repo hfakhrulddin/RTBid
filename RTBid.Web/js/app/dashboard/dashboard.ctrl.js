@@ -1,4 +1,12 @@
-﻿$(function () {
+﻿angular.module('app').controller('DashboardController', function ($scope, AuthenticationService) {
+
+    $scope.logout = function () {
+        AuthenticationService.logout().then(function () { location.replace('/#/app/home') });
+    };
+});
+
+
+$(function () {
     var toggleFunction;
     $('.toggle-handle').click(toggleFunction = function () {
         var area = $('#' + $(this).attr('data-area'));
