@@ -1,8 +1,8 @@
-  <section class="artistpage">
+  <section class="artistpage pull-left">
         <div class="search">
-            <h1>Artist Directory</h1>
+            <h1>Find Your Friends</h1>
             <label>search: </label>
-            <input ng-model="query" placeholder="Search for artists" autofocus>
+            <input ng-model="query" placeholder="Find Your Friends" autofocus>
             <label class="formgroup">
                 by:
                 <select ng-model="artistOrder">
@@ -18,7 +18,6 @@
                 <input type="radio" ng-model="direction" name="direction" value="reverse">
                 descending
             </label>
-
         </div>
         <ul class="artistlist" ng-show="query">
             <li ng-animate="'animate'" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction">
@@ -31,4 +30,143 @@
                     </a>
             </li>
         </ul>
+
+      <div class="search">
+          <h1>Online Users</h1>
+          <!--<label>search: </label>
+          <input ng-model="query" placeholder="Online Users" autofocus>-->
+          <!--<label class="formgroup">
+              by:
+              <select ng-model="artistOrder">
+                  <option value="name">Name</option>
+                  <option value="reknown">Reknown</option>
+              </select>
+          </label>
+          <label class="formgroup">
+              <input type="radio" ng-model="direction" name="direction" checked>
+              ascending
+          </label>
+          <label class="formgroup">
+              <input type="radio" ng-model="direction" name="direction" value="reverse">
+              descending
+          </label>-->
+
+      </div>
+      <ul class="artistlist" ng-show="query">
+          <li ng-animate="'animate'" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction">
+              <a href="/#/app/details/{{artists.indexOf(item)}}">
+                  <img ng-src="images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
+                  <div class="info">
+                      <h2>{{item.name}}</h2>
+                      <h3>{{item.reknown}}</h3>
+                  </div>
+              </a>
+          </li>
+      </ul>
     </section>
+
+
+<link href="../../../css/app/auction/auction.css" rel="stylesheet" />
+
+<div class="row pull-right">
+    <div class="round hollow text-center">
+        <a href="/#/app/list" id="addClass"><span class="glyphicon glyphicon-comment "></span>  Let's chat </a>
+    </div>
+    <hr>
+</div>
+
+<div class="popup-box chat-popup" id="qnimate">
+    <div class="popup-head">
+        <div class="popup-head-left pull-left"><img src="src=../../../images/profile/robo.jpg" alt="iamgurdeeposahan">Hussen Fakhrulddin</div>
+        <div class="popup-head-right pull-right">
+            <div class="btn-group">
+                <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+                    <i class="glyphicon glyphicon-cog"></i>
+                </button>
+                <ul role="menu" class="dropdown-menu pull-right">
+                    <li><a href="#">Media</a></li>
+                    <li><a href="#">Block</a></li>
+                    <li><a href="#">Clear Chat</a></li>
+                    <li><a href="#">Email Chat</a></li>
+                </ul>
+            </div>
+
+            <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
+        </div>
+    </div>
+    <div class="popup-messages">
+
+
+
+
+        <div class="direct-chat-messages">
+
+
+            <div class="chat-box-single-line">
+                <abbr class="timestamp">October 8th, 2015</abbr>
+            </div>
+
+
+            <!-- Message. Default to the left -->
+            <div class="direct-chat-msg doted-border">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">Hussen</span>
+                </div>
+                <!-- /.direct-chat-info -->
+                <img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/>
+                <div class="direct-chat-text">
+                    Hey bro, how’s everything going ?
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-img-reply-small pull-left">
+
+                    </span>
+                    <span class="direct-chat-reply-name">Singh</span>
+                </div>
+                <!-- /.direct-chat-text -->
+
+            </div>
+            <!-- /.direct-chat-msg -->
+
+            <div class="chat-box-single-line">
+                <abbr class="timestamp">October 9th, 2015</abbr>
+            </div>
+
+            <!-- Message. Default to the left -->
+            <div class="direct-chat-msg doted-border">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">Osahan</span>
+                </div>
+                <!-- /.direct-chat-info -->
+                <img alt="" src="" class="direct-chat-img"><!-- /.direct-chat-img -->
+                <div class="direct-chat-text">
+                    Hey bro, how’s everything going ?
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <img alt="" src="" class="direct-chat-img big-round">
+                    <span class="direct-chat-reply-name">Singh</span>
+                </div>
+                <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+
+        </div>
+
+
+    </div>
+    <div class="popup-messages-footer">
+        <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+        <div class="btn-footer">
+            <button class="bg_none"><i class="glyphicon glyphicon-film"></i> </button>
+            <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
+            <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
+            <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i> </button>
+        </div>
+    </div>
+</div>

@@ -5,9 +5,18 @@ artistControllers.controller('ListController', ['$scope', '$http', function($sco
     $scope.artists = data;
     $scope.artistOrder = 'name';
   });
+
+  $(function () {
+    $("#addClass").click(function () {
+        $('#qnimate').addClass('popup-box-on');
+    });
+
+    $("#removeClass").click(function () {
+        $('#qnimate').removeClass('popup-box-on');
+    });
+  })
+
 }]);
-
-
 
 artistControllers.controller('DetailsController', ['$scope', '$http', '$routeParams', '$stateParams', function ($scope, $http, $routeParams, $stateParams, ChatroomResource) {
     $http.get('data/data.json').success(function (data) {

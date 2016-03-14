@@ -1,77 +1,197 @@
 ﻿<link href="../../../css/app/auction/auction.css" rel="stylesheet" />
-
-<div class="row pull-right">
-    <div class="round hollow text-center">
-        <a href="/#/app/auction" id="addClass"><span class="glyphicon glyphicon-comment "></span>  Let's chat </a>
-    </div>
-    <hr>
-</div>
-
-
-
-<div class="tab-content col-md-6">
-    <div role="tabpanel" class="tab-pane profile-pane active" id="profile">
-        <div>
-            <div>
-                <div class="header">
-                    <h4>Profile Information</h4>
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <img class="col-sm-3 col-sm-offset-1" src="http://lorempixel.com/420/420/city">
-                        <div class="col-sm-4">
-                            <h4>[Name]</h4>
-                            <h4>[Type]</h4>
-                        </div>
-                        <div class="col-sm-3">
-                            <button class="btn btn-lg btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span></button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h4 class="col-sm-3 col-sm-offset-1 col">[X] Followers</h4>
-                        <h4 class="col-sm-4 col">[X] Votes</h4>
-                        <button class="col-sm-3 btn btn-primary col"><h4>[X] Requests</h4></button>
-                        <button class="col-sm-3 btn btn-primary col">
-                            <a href="/#/app/auction" class="btn" aria-controls="profile" role="tab" data-toggle="tab"><h4>[X] Requests</h4></a>
+<br/>
+       <div class="row"></div>
+<div class="container col-md-8">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
                         </button>
-
-                        <h3 class="col-sm-10 col-sm-offset-1 title">Supported Causes</h3>
-                        <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
-                            <div id="pane1" class="cause-info">
-                                <div>
-                                    <img src="http://lorempixel.com/420/420/people">
-                                    <div>
-                                        <h4>[Name]</h4>
-                                        <h4>[Type]</h4>
-                                    </div>
-                                    <div>
-                                        <h4>[X] Votes</h4>
-                                    </div>
+                        <ul class="dropdown-menu slidedown">
+                            <li>
+                                <a href="http://www.jquery2dotnet.com">
+                                    <span class="glyphicon glyphicon-refresh">
+                                    </span>Refresh
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.jquery2dotnet.com">
+                                    <span class="glyphicon glyphicon-ok-sign">
+                                    </span>Available
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.jquery2dotnet.com">
+                                    <span class="glyphicon glyphicon-remove">
+                                    </span>Busy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.jquery2dotnet.com">
+                                    <span class="glyphicon glyphicon-time"></span>
+                                    Away
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="http://www.jquery2dotnet.com">
+                                    <span class="glyphicon glyphicon-off"></span>
+                                    Sign Out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                    </small>
                                 </div>
-                                <div>
-                                    <h4>About:</h4>
-                                    <div>
-                                        <p>Nam ex ullum assum apeirian, facilisi splendide quo ex. Sea et nonumy accusata, in utinam vocent facilis vix. Cu vix eripuit temporibus mediocritatem, denique theophrastus ne mel, et graecis maiorum mediocritatem per. Magna tacimates sed eu, sit no graeco latine referrentur. Id sed assum quaerendum, apeirian erroribus ut his. Ex mei mazim minimum.</p>
-                                        <h5>More at <a>[Website]</a></h5>
-                                    </div>
-                                    <button class="btn btn-primary pull-right">Give</button>
-                                </div>
-                                <div>
-                                    <h2><a class="toggle-handle" href="#pane1" data-area="pane1"><span class="glyphicon glyphicon-chevron-down"></span></a></h2>
-                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                
+                                </p>
                             </div>
-                        </div>
+                        </li>
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornar.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix">
+                            <span class="chat-img pull-left">
+                                <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago
+                                    </small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix">
+                            <span class="chat-img pull-right">
+                                <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send
+                            </button>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-                ////////
+                <!-- The Item in the Auction-->
+                <div class="tab-content col-md-4 pull-left">
+                    <div role="tabpanel" class="tab-pane profile-pane active" id="profile">
+                        <div>
+                            <div>
+                                <div class="header">
+                                    <h4>Product Information</h4>
+                                </div>
+                                <div class="content">
+                                    <div class="row">
+                                        <img class="col-sm-3 col-sm-offset-1" src="http://lorempixel.com/420/420/city">
+                                        <div class="col-sm-4">
+                                            <h4>[Name]</h4>
+                                            <h4>[Type]</h4>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button class="btn btn-lg btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span></button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h4 class="col-sm-3 col-sm-offset-1 col">[X] Followers</h4>
+                                        <h4 class="col-sm-4 col">[X] Votes</h4>
+                                        <div>
+                                            <a class="btn btn-primary rbtn" href="/#/app/auction" role="button"><h4>Enter the Auction</h4></a>
+                                        </div>
+                                        <h3 class="col-sm-10 col-sm-offset-1 title">Supported Causes</h3>
+                                        <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
+                                            <div id="pane1" class="cause-info">
+                                                <div>
+                                                    <img src="http://lorempixel.com/420/420/people">
+                                                    <div>
+                                                        <h4>[Name]</h4>
+                                                        <h4>[Type]</h4>
+                                                    </div>
+                                                    <div>
+                                                        <h4>[X] Votes</h4>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h4>About:</h4>
+                                                    <div>
+                                                        <p>Nam ex ullum assum apeirian, facilisi splendide quo ex. Sea et nonumy accusata, in utinam vocent facilis vix. Cu vix eripuit temporibus mediocritatem, denique theophrastus ne mel, et graecis maiorum mediocritatem per. Magna tacimates sed eu, sit no graeco latine referrentur. Id sed assum quaerendum, apeirian erroribus ut his. Ex mei mazim minimum.</p>
+                                                        <h5>More at <a>[Website]</a></h5>
+                                                    </div>
+                                                    <button class="btn btn-primary pull-right">Give</button>
+                                                </div>
+                                                <div>
+                                                    <h2><a class="toggle-handle" href="#pane1" data-area="pane1"><span class="glyphicon glyphicon-chevron-down"></span></a></h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!--<td class="round hollow text-center col-lg-12 col-lg-offset-1">-->
+                <div class="text-center col-md-2">
+                    <a href="/#/app/auction" id="addClass"><span class="glyphicon glyphicon-comment"></span>  Let's chat </a>
+                </div>
+
+    <!--</div>-->
+<!-- popup-Chat-->
 <div class="popup-box chat-popup" id="qnimate">
     <div class="popup-head">
-        <div class="popup-head-left pull-left"><img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan">Hussen Fakhrulddin</div>
+        <div class="popup-head-left pull-left"><img src="src=../../../images/profile/robo.jpg" alt="iamgurdeeposahan">Hussen Fakhrulddin</div>
         <div class="popup-head-right pull-right">
             <div class="btn-group">
                 <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
@@ -84,30 +204,21 @@
                     <li><a href="#">Email Chat</a></li>
                 </ul>
             </div>
-
             <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
         </div>
     </div>
     <div class="popup-messages">
-
-
-
-
         <div class="direct-chat-messages">
-
-
             <div class="chat-box-single-line">
                 <abbr class="timestamp">October 8th, 2015</abbr>
             </div>
-
-
             <!-- Message. Default to the left -->
             <div class="direct-chat-msg doted-border">
                 <div class="direct-chat-info clearfix">
                     <span class="direct-chat-name pull-left">Osahan</span>
                 </div>
                 <!-- /.direct-chat-info -->
-                <img alt="message user image" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+                <img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img" /> <!-- /.direct-chat-img -->
                 <div class="direct-chat-text">
                     Hey bro, how’s everything going ?
                 </div>
@@ -116,21 +227,15 @@
                 </div>
                 <div class="direct-chat-info clearfix">
                     <span class="direct-chat-img-reply-small pull-left">
-
                     </span>
                     <span class="direct-chat-reply-name">Singh</span>
                 </div>
                 <!-- /.direct-chat-text -->
             </div>
             <!-- /.direct-chat-msg -->
-
-
             <div class="chat-box-single-line">
                 <abbr class="timestamp">October 9th, 2015</abbr>
             </div>
-
-
-
             <!-- Message. Default to the left -->
             <div class="direct-chat-msg doted-border">
                 <div class="direct-chat-info clearfix">
@@ -151,22 +256,7 @@
                 <!-- /.direct-chat-text -->
             </div>
             <!-- /.direct-chat-msg -->
-
-
-
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
     </div>
     <div class="popup-messages-footer">
         <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>

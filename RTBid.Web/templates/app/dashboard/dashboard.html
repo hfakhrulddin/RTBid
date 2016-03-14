@@ -1,11 +1,9 @@
-﻿<link href="../../../css/app/dashboard/dashboard.css" rel="stylesheet" />
-
-        <div class="tab-content col-md-12">
-            <div role="tabpanel" class="tab-pane profile-pane active" id="profile">
+﻿<!--<link href="../../../css/app/dashboard/dashboardr.css" rel="stylesheet" />-->
+               <div role="tabpanel" class="tab-pane profile-pane active col-md-8" id="profile">
                 <div>
-                    <div>
+                   <div class="tab-content col-lg-6 col-xs-2">
                         <div class="header">
-                            <h4>Profile Information</h4>
+                            <h4>Product Information</h4>
                         </div>
                         <div class="content">
                             <div class="row">
@@ -21,44 +19,43 @@
                             <div class="row">
                                 <h4 class="col-sm-3 col-sm-offset-1 col">[X] Followers</h4>
                                 <h4 class="col-sm-4 col">[X] Votes</h4>
-                                <button class="col-sm-3 btn btn-primary col"><h4>[X] Requests</h4></button>
-                                <button class="col-sm-3 btn btn-primary col">
-                                    <a href="/#/app/auction" class="btn" aria-controls="profile" role="tab" data-toggle="tab"><h4>[X] Requests</h4></a>
-                                </button>
+                                <div>
+                                    <a class="btn btn-primary rbtn" href="/#/app/auction" role="button"><h4>Enter the Auction</h4></a>
+                                    </div>
 
-                                    <h3 class="col-sm-10 col-sm-offset-1 title">Supported Causes</h3>
-                                    <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
-                                        <div id="pane1" class="cause-info">
-                                            <div>
-                                                <img src="http://lorempixel.com/420/420/people">
+                                        <h3 class="col-sm-10 col-sm-offset-1 title">Supported Causes</h3>
+                                        <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
+                                            <div id="pane1" class="cause-info">
                                                 <div>
-                                                    <h4>[Name]</h4>
-                                                    <h4>[Type]</h4>
+                                                    <img src="http://lorempixel.com/420/420/people">
+                                                    <div>
+                                                        <h4>[Name]</h4>
+                                                        <h4>[Type]</h4>
+                                                    </div>
+                                                    <div>
+                                                        <h4>[X] Votes</h4>
+                                                    </div>
                                                 </div>
                                                 <div>
-                                                    <h4>[X] Votes</h4>
+                                                    <h4>About:</h4>
+                                                    <div>
+                                                        <p>Nam ex ullum assum apeirian, facilisi splendide quo ex. Sea et nonumy accusata, in utinam vocent facilis vix. Cu vix eripuit temporibus mediocritatem, denique theophrastus ne mel, et graecis maiorum mediocritatem per. Magna tacimates sed eu, sit no graeco latine referrentur. Id sed assum quaerendum, apeirian erroribus ut his. Ex mei mazim minimum.</p>
+                                                        <h5>More at <a>[Website]</a></h5>
+                                                    </div>
+                                                    <button class="btn btn-primary pull-right">Give</button>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                <h4>About:</h4>
                                                 <div>
-                                                    <p>Nam ex ullum assum apeirian, facilisi splendide quo ex. Sea et nonumy accusata, in utinam vocent facilis vix. Cu vix eripuit temporibus mediocritatem, denique theophrastus ne mel, et graecis maiorum mediocritatem per. Magna tacimates sed eu, sit no graeco latine referrentur. Id sed assum quaerendum, apeirian erroribus ut his. Ex mei mazim minimum.</p>
-                                                    <h5>More at <a>[Website]</a></h5>
+                                                    <h2><a class="toggle-handle" href="#pane1" data-area="pane1"><span class="glyphicon glyphicon-chevron-down"></span></a></h2>
                                                 </div>
-                                                <button class="btn btn-primary pull-right">Give</button>
-                                            </div>
-                                            <div>
-                                                <h2><a class="toggle-handle" href="#pane1" data-area="pane1"><span class="glyphicon glyphicon-chevron-down"></span></a></h2>
                                             </div>
                                         </div>
                                     </div>
-                            </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div class="tab-content col-lg-6 col-xs-2">
                         <div class="header">
-                            <h4>Profile Information</h4>
+                            <h4>Product Information</h4>
                         </div>
                         <div class="content">
                             <div class="row">
@@ -74,11 +71,9 @@
                             <div class="row">
                                 <h4 class="col-sm-3 col-sm-offset-1 col">[X] Followers</h4>
                                 <h4 class="col-sm-4 col">[X] Votes</h4>
-                                <button class="col-sm-3 btn btn-primary col"><h4>[X] Requests</h4></button>
-                                <button class="col-sm-3 btn btn-primary col">
-                                    <a href="/#/app/auction" class="btn" aria-controls="profile" role="tab" data-toggle="tab"><h4>[X] Requests</h4></a>
-                                </button>
-
+                                <div>
+                                    <a class="btn btn-primary rbtn" href="/#/app/auction" role="button"><h4>Enter the Auction</h4></a>
+                                </div>
                                 <h3 class="col-sm-10 col-sm-offset-1 title">Supported Causes</h3>
                                 <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
                                     <div id="pane1" class="cause-info">
@@ -107,8 +102,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <!-- End Help -->
+                    </div>  
             </div>
         </div>
-     </div>
+    
