@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,23 @@ namespace RTBid.Core.Domain
         public DateTime CreatedDate { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+
+
+        public Category()
+        {
+        }
+
+        public Category(CategoryModel model)
+        {
+            this.Update(model);
+            this.CreatedDate = DateTime.Now;
+        }
+
+        public void Update(CategoryModel model)
+        {
+            CategoryId = model.CategoryId;
+            CategoryName = model.CategoryName;
+            CategoryDescription = model.CategoryDescription;
+        }
     }
 }

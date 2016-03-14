@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,32 @@ namespace RTBid.Core.Domain
         public string AttachmentUrl { get; set; }
         public DateTime TimeStamp { get; set; }
 
+
         public virtual RTBidUser RTBidUser { get; set; }
         public virtual Auction Auction { get; set; }
+
+
+        public Comment()
+        {
+        }
+
+        public Comment(CommentModel model)
+        {
+            this.Update(model);
+            this.TimeStamp = DateTime.Now;
+        }
+
+        public void Update(CommentModel model)
+        {
+            CommentId = model.CommentId;
+            AuctionId = model.AuctionId;
+            UserId = model.UserId;
+            Title = model.Title;
+            Description = model.Description;
+            AttachmentUrl = model.AttachmentUrl;
+        }
+
+
+
+        }
     }
-}

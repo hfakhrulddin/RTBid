@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,27 @@ namespace RTBid.Core.Domain
         public virtual ICollection<UserAuction> RTBidUsers { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Bid> Bids { get; set; }
+   
+
+    public Auction()
+    {
     }
+
+    public Auction(AuctionModel model)
+    {
+        this.Update(model);
+        this.CreatedDate = DateTime.Now;
+    }
+
+    public void Update(AuctionModel model)
+    {
+        AuctionId = model.AuctionId;
+        ProductId = model.ProductId;
+        AuctionTitle = model.AuctionTitle;
+        NumberOfBidders = model.NumberOfBidders;
+        NumberOfGuests = model.NumberOfGuests;
+        StartTime = model.StartTime;
+        ClosedTime = model.ClosedTime;
+    }
+  }
 }

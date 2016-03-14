@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,25 @@ namespace RTBid.Core.Domain
 
         public virtual Auction Auction { get; set; }
         public virtual RTBidUser RTBidUser { get; set; }
+
+        public Bid()
+        {
+        }
+
+        public Bid(BidModel model)
+        {
+            this.Update(model);
+            this.TimeStamp = DateTime.Now;
+        }
+
+        public void Update(BidModel model)
+        {
+            BidId = model.BidId;
+            AuctionId = model.AuctionId;
+            UserId = model.UserId;
+            CurrentAmount = model.CurrentAmount;
+            AttachedText = model.AttachedText;
+
+        }
     }
 }

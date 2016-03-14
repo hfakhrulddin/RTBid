@@ -10,35 +10,48 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RTBid.Core.Domain;
 using RTBid.Data.Infrastructure;
+using RTBid.Infrastructure;
+using RTBid.Core.Models;
+using RTBid.Core.Infrastructure;
+using RTBid.Core.Repository;
+using AutoMapper;
 
 namespace RTBid.Controllers
 {
-    public class PurchasesController : ApiController
+    [Authorize]
+    public class PurchasesController : BaseApiController
     {
-        private RTBidDataContext db = new RTBidDataContext();
+        //private RTBidDataContext db = new RTBidDataContext();
+        private readonly IPurchaseRepository _purchaseRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        // GET: api/Purchases
-        public IQueryable<Purchase> GetPurchases()
+        public PurchasesController(IPurchaseRepository purchaseRepository, IUnitOfWork unitOfWork, IRTBidUserRepository rtbidUserRepository) : base(rtbidUserRepository)
         {
-            return db.Purchases;
+            _purchaseRepository = purchaseRepository;
+            _unitOfWork = unitOfWork;
+        }
+        // GET: api/Purchases
+        public IEnumerable<PurchaseModel> GetPurchases()
+        {
+            return Mapper.Map<IEnumerable<PurchaseModel>>(_purchaseRepository.GetAll());
         }
 
         // GET: api/Purchases/5
         [ResponseType(typeof(Purchase))]
         public IHttpActionResult GetPurchase(int id)
         {
-            Purchase purchase = db.Purchases.Find(id);
+            Purchase purchase = _purchaseRepository.GetById(id);
             if (purchase == null)
             {
                 return NotFound();
             }
 
-            return Ok(purchase);
+            return Ok(Mapper.Map<PurchaseModel>(purchase));
         }
 
         // PUT: api/Purchases/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPurchase(int id, Purchase purchase)
+        public IHttpActionResult PutPurchase(int id, PurchaseModel purchase)
         {
             if (!ModelState.IsValid)
             {
@@ -50,13 +63,16 @@ namespace RTBid.Controllers
                 return BadRequest();
             }
 
-            db.Entry(purchase).State = EntityState.Modified;
-
+            //db.Entry(purchase).State = EntityState.Modified;
+            var dbPurchase = _purchaseRepository.GetById(id);
+            dbPurchase.Update(purchase);
+            _purchaseRepository.Update(dbPurchase);
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _unitOfWork.Commit();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!PurchaseExists(id))
                 {
@@ -73,15 +89,23 @@ namespace RTBid.Controllers
 
         // POST: api/Purchases
         [ResponseType(typeof(Purchase))]
-        public IHttpActionResult PostPurchase(Purchase purchase)
+        public IHttpActionResult PostPurchase(PurchaseModel purchase)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Purchases.Add(purchase);
-            db.SaveChanges();
+            var dbPurchase = new Purchase(purchase);
+
+            dbPurchase.UserId = CurrentUser.Id;
+            _purchaseRepository.Add(dbPurchase);
+            _unitOfWork.Commit();
+
+            purchase.PurchaseId = dbPurchase.PurchaseId;
+            purchase.CreatedDate = dbPurchase.CreatedDate;
+            //db.Purchases.Add(purchase);
+            //db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = purchase.PurchaseId }, purchase);
         }
@@ -90,30 +114,33 @@ namespace RTBid.Controllers
         [ResponseType(typeof(Purchase))]
         public IHttpActionResult DeletePurchase(int id)
         {
-            Purchase purchase = db.Purchases.Find(id);
+            Purchase purchase = _purchaseRepository.GetById(id);
             if (purchase == null)
             {
                 return NotFound();
             }
 
-            db.Purchases.Remove(purchase);
-            db.SaveChanges();
+            //db.Purchases.Remove(purchase);
+            //db.SaveChanges();
 
-            return Ok(purchase);
+            _purchaseRepository.Delete(purchase);
+            _unitOfWork.Commit();
+
+            return Ok(Mapper.Map<PurchaseModel>(purchase));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         private bool PurchaseExists(int id)
         {
-            return db.Purchases.Count(e => e.PurchaseId == id) > 0;
+            return _purchaseRepository.Any(e => e.PurchaseId == id);
         }
     }
 }

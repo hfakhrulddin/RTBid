@@ -10,35 +10,50 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using RTBid.Core.Domain;
 using RTBid.Data.Infrastructure;
+using RTBid.Infrastructure;
+using RTBid.Core.Models;
+using RTBid.Core.Repository;
+using RTBid.Core.Infrastructure;
+using AutoMapper;
 
 namespace RTBid.Controllers
 {
-    public class CommentsController : ApiController
+    [Authorize]
+    public class CommentsController : BaseApiController
     {
-        private RTBidDataContext db = new RTBidDataContext();
+        private readonly ICommentRepository _commentRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public CommentsController(ICommentRepository commentRepository, IUnitOfWork unitOfWork, IRTBidUserRepository rtbidUserRepository) : base(rtbidUserRepository)
+        {
+            _commentRepository = commentRepository;
+            _unitOfWork = unitOfWork;
+        }
+        //private RTBidDataContext db = new RTBidDataContext();
 
         // GET: api/Comments
-        public IQueryable<Comment> GetComments()
+        public IEnumerable<CommentModel> GetComments()
         {
-            return db.Comments;
+            //return db.Comments;
+            return Mapper.Map<IEnumerable<CommentModel>>(_commentRepository.GetAll());
         }
 
         // GET: api/Comments/5
         [ResponseType(typeof(Comment))]
         public IHttpActionResult GetComment(int id)
         {
-            Comment comment = db.Comments.Find(id);
+            Comment comment = _commentRepository.GetById(id);
             if (comment == null)
             {
                 return NotFound();
             }
 
-            return Ok(comment);
+            return Ok(Mapper.Map<CommentModel>(comment));
         }
 
         // PUT: api/Comments/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutComment(int id, Comment comment)
+        public IHttpActionResult PutComment(int id, CommentModel comment)
         {
             if (!ModelState.IsValid)
             {
@@ -50,13 +65,17 @@ namespace RTBid.Controllers
                 return BadRequest();
             }
 
-            db.Entry(comment).State = EntityState.Modified;
+            //db.Entry(comment).State = EntityState.Modified;
+            var dbComment = _commentRepository.GetById(id);
+            dbComment.Update(comment);
+            _commentRepository.Update(dbComment);
 
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _unitOfWork.Commit();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!CommentExists(id))
                 {
@@ -73,15 +92,22 @@ namespace RTBid.Controllers
 
         // POST: api/Comments
         [ResponseType(typeof(Comment))]
-        public IHttpActionResult PostComment(Comment comment)
+        public IHttpActionResult PostComment(CommentModel comment)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Comments.Add(comment);
-            db.SaveChanges();
+            var dbComment = new Comment(comment);
+
+            dbComment.UserId = CurrentUser.Id;
+            _commentRepository.Add(dbComment);
+            _unitOfWork.Commit();
+
+            comment.CommentId = dbComment.CommentId;
+            comment.TimeStamp = dbComment.TimeStamp;
+       
 
             return CreatedAtRoute("DefaultApi", new { id = comment.CommentId }, comment);
         }
@@ -90,30 +116,25 @@ namespace RTBid.Controllers
         [ResponseType(typeof(Comment))]
         public IHttpActionResult DeleteComment(int id)
         {
-            Comment comment = db.Comments.Find(id);
+            Comment comment = _commentRepository.GetById(id);
             if (comment == null)
             {
                 return NotFound();
             }
 
-            db.Comments.Remove(comment);
-            db.SaveChanges();
+            //db.Comments.Remove(comment);
+            //db.SaveChanges();
+            _commentRepository.Delete(comment);
+            _unitOfWork.Commit();
 
-            return Ok(comment);
+            return Ok(Mapper.Map <CommentModel > (comment));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
 
         private bool CommentExists(int id)
         {
-            return db.Comments.Count(e => e.CommentId == id) > 0;
+            return _commentRepository.Any(e => e.CommentId == id);
         }
     }
 }

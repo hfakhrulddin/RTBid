@@ -11,35 +11,49 @@ using System.Web.Http.Description;
 using RTBid.Core.Domain;
 using RTBid.Data.Infrastructure;
 using RTBid.Infrastructure;
+using RTBid.Core.Repository;
+using RTBid.Core.Infrastructure;
+using RTBid.Data.Repository;
+using RTBid.Core.Models;
+using AutoMapper;
 
 namespace RTBid.Controllers
 {
-    public class AuctionsController : ApiController
+    [Authorize]
+    public class AuctionsController : BaseApiController
     {
-        private RTBidDataContext db = new RTBidDataContext();
+        private readonly IAuctionRepository _auctionRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public AuctionsController(IAuctionRepository auctionRepository, IUnitOfWork unitOfWork, IRTBidUserRepository rtbidUserRepository) : base(rtbidUserRepository)
+        {
+            _auctionRepository = auctionRepository;
+            _unitOfWork = unitOfWork;
+        }
+    
 
         // GET: api/Auctions
-        public IQueryable<Auction> GetAuctions()
+        public IEnumerable<AuctionModel> GetAuctions()
         {
-            return db.Auctions;
+            return Mapper.Map<IEnumerable<AuctionModel>>(_auctionRepository.GetAll());
         }
 
         // GET: api/Auctions/5
         [ResponseType(typeof(Auction))]
         public IHttpActionResult GetAuction(int id)
         {
-            Auction auction = db.Auctions.Find(id);
+            Auction auction = _auctionRepository.GetById(id);
             if (auction == null)
             {
                 return NotFound();
             }
 
-            return Ok(auction);
+            return Ok(Mapper.Map<AuctionModel>(auction));
         }
 
         // PUT: api/Auctions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutAuction(int id, Auction auction)
+        public IHttpActionResult PutAuction(int id, AuctionModel auction)
         {
             if (!ModelState.IsValid)
             {
@@ -51,13 +65,17 @@ namespace RTBid.Controllers
                 return BadRequest();
             }
 
-            db.Entry(auction).State = EntityState.Modified;
+            var dbAuction = _auctionRepository.GetById(id);
+            dbAuction.Update(auction);
+            _auctionRepository.Update(dbAuction);
+            //db.Entry(auction).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _unitOfWork.Commit();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
                 if (!AuctionExists(id))
                 {
@@ -74,15 +92,21 @@ namespace RTBid.Controllers
 
         // POST: api/Auctions
         [ResponseType(typeof(Auction))]
-        public IHttpActionResult PostAuction(Auction auction)
+        public IHttpActionResult PostAuction(AuctionModel auction)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Auctions.Add(auction);
-            db.SaveChanges();
+            var dbAuction = new Auction(auction);
+
+            //dbAuction.RTBidUserId = CurrentUser.Id;
+            _auctionRepository.Add(dbAuction);
+            _unitOfWork.Commit();
+
+            auction.AuctionId = dbAuction.AuctionId;
+            //auction.DateSubmitted = dbResponse.DateSubmitted;
 
             return CreatedAtRoute("DefaultApi", new { id = auction.AuctionId }, auction);
         }
@@ -91,30 +115,33 @@ namespace RTBid.Controllers
         [ResponseType(typeof(Auction))]
         public IHttpActionResult DeleteAuction(int id)
         {
-            Auction auction = db.Auctions.Find(id);
+            //Auction auction = db.Auctions.Find(id);
+            Auction auction = _auctionRepository.GetById(id);
             if (auction == null)
             {
                 return NotFound();
             }
 
-            db.Auctions.Remove(auction);
-            db.SaveChanges();
+            //db.Auctions.Remove(auction);
+            //db.SaveChanges();
+            _auctionRepository.Delete(auction);
+            _unitOfWork.Commit();
 
-            return Ok(auction);
+            return Ok(Mapper.Map <AuctionModel> (auction));
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
         private bool AuctionExists(int id)
         {
-            return db.Auctions.Count(e => e.AuctionId == id) > 0;
+            return _auctionRepository.Any(e => e.AuctionId == id);
         }
     }
 }
