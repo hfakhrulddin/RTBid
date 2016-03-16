@@ -1,0 +1,27 @@
+﻿<input type="text" id="message" />
+<input type="button" id="sendmessage" value="Send" />
+<input type="hidden" id="displayname" />
+<ul id="discussion"></ul>
+
+<!--<script type="text/javascript">
+    $(function () {
+        $.connection.hub.url = 'http://localhost:50255/signalr';
+        var chat = $.connection.ChatHub;
+
+        chat.client.BroadcastMessage = function (name, message) {
+            $('#discussion').append('<li><strong>' + name + '</strong>:&nbsp;&nbsp;' + message + '</li>');
+        };
+
+    $('#displayname').val(prompt('Enter You Name:', ""));
+    $('#meesage').focus();
+    $.connection.hub.logging = true;
+
+    $.connection.hub.start().done(function () {
+        $('#sendmessage').click(function () {
+            chat.server.send($('#displayname').val(), $('#message').val());
+            $('#message').val('');
+        });
+    });
+    });
+</script>-->
+

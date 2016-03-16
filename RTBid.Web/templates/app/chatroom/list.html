@@ -19,6 +19,7 @@
                 descending
             </label>
         </div>
+
         <ul class="artistlist" ng-show="query">
             <li ng-animate="'animate'" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction">
                 <a href="/#/app/details/{{artists.indexOf(item)}}">
@@ -50,8 +51,8 @@
               <input type="radio" ng-model="direction" name="direction" value="reverse">
               descending
           </label>-->
-
       </div>
+
       <ul class="artistlist" ng-show="query">
           <li ng-animate="'animate'" class="artist cf" ng-repeat="item in artists | filter: query | orderBy: artistOrder:direction">
               <a href="/#/app/details/{{artists.indexOf(item)}}">
@@ -65,14 +66,11 @@
       </ul>
     </section>
 
-
 <link href="../../../css/app/auction/auction.css" rel="stylesheet" />
-
-<div class="row pull-right">
-    <div class="round hollow text-center">
+<div class="row pull-left">
+    <div class="round text-center">
         <a href="/#/app/list" id="addClass"><span class="glyphicon glyphicon-comment "></span>  Let's chat </a>
     </div>
-    <hr>
 </div>
 
 <div class="popup-box chat-popup" id="qnimate">
@@ -90,15 +88,11 @@
                     <li><a href="#">Email Chat</a></li>
                 </ul>
             </div>
-
             <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
         </div>
     </div>
     <div class="popup-messages">
-
-
-
-
+        
         <div class="direct-chat-messages">
 
 

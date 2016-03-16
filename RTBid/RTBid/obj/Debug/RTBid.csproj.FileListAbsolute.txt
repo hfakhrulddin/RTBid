@@ -63,3 +63,10 @@ C:\Div\Origin\RTBid\RTBid\RTBid\bin\EntityFramework.SqlServer.xml
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\System.Web.Http.Owin.dll
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\Stripe.net.dll
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\System.Web.Http.Owin.xml
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Client.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Client.xml
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.Web.Infrastructure.dll

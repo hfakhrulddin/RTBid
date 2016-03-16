@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -33,7 +31,8 @@ namespace RTBid.Controllers
         // GET: api/Purchases
         public IEnumerable<PurchaseModel> GetPurchases()
         {
-            return Mapper.Map<IEnumerable<PurchaseModel>>(_purchaseRepository.GetAll());
+            //change others CR
+            return Mapper.Map<IEnumerable<PurchaseModel>>(_purchaseRepository.GetWhere(p => p.UserId== CurrentUser.Id));
         }
 
         // GET: api/Purchases/5

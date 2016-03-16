@@ -22,12 +22,14 @@ using RTBid.Infrastructure;
 
 [assembly: OwinStartup(typeof(RTBidManager.Api.Startup))]
 
+
 namespace RTBidManager.Api
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            
             var container = ConfigureSimpleInjector(app);
             ConfigureOAuth(app, container);
 
@@ -39,6 +41,7 @@ namespace RTBidManager.Api
             WebApiConfig.Register(config);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
+            app.MapSignalR(); //SignalR Added
         }
 
         public void ConfigureOAuth(IAppBuilder app, Container container)
