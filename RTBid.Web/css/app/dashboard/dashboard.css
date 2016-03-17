@@ -50,13 +50,15 @@
     text-decoration: none;
     color: #333;
     
-    border: 0 solid #8e44ad;
+    /*border: 0 solid #8e44ad;*/
+    border: 0 solid #8dd8b4;
     border-radius: 0;
     padding: 10px 0 4px 0;
 }
 
 .dashboard-tabs > li.active > a {
-    color: #8e44ad;
+    /*color: #8e44ad;*/
+     color:#8dd8b4;
     
     border-width: 8px 0;
     padding: 0;
@@ -118,12 +120,6 @@
     border-radius: 5px;
 }
 
-.profile-pane {
-    width: 100%;
-    display: table;
-    border-spacing: 10px;
-}
-
 .profile-pane > div {
     display: table-row;
 }
@@ -134,10 +130,16 @@
 }
 
 .profile-pane .header {
-    background: #8e44ad;
+    /*background: #8e44ad;*/
+     background:#1abc9c;
     color: #fff;
     padding: 5px 15px;
     border-radius: 10px 10px 0 0;
+}
+.profile-pane {
+    width: 100%;
+    display: table;
+    border-spacing: 10px;
 }
 
 .profile-pane .content {
@@ -314,4 +316,57 @@
 div {
   
     border-radius: 50px;
+}
+
+.profile-pane2 > div {
+    display: table-row;
+}
+
+.profile-pane2 > div > div {
+    width: 50%;
+    display: table-cell;
+}
+
+.profile-pane2 .header {
+    /*background: #8e44ad;*/
+     background:#1abc9c;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 10px 10px 0 0;
+}
+
+.profile-pane2 {
+    width: 37%;
+    height:10%;
+    display: table;
+    border-spacing: 10px;
+}
+
+.profile-pane2 .content {
+    background: #ecf0f1;
+    border-radius: 0 0 10px 10px;
+    padding: 5px 15px;
+}
+
+.profile-pane2 h4.col {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-pane2 button.col {
+    text-align: center;
+    padding: 0;
+}
+
+.profile-pane2 .title {
+    margin-top: 0;
+    padding: 10px;
+    border-bottom: 1px solid #aaa;
+}
+
+.profile-pane2 article {
+    background: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 40px;
 }

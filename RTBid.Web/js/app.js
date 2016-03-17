@@ -19,10 +19,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
                     .state('app.list', { url: '/list', templateUrl: '/templates/app/chatroom/list.html',controller: 'ListController' })
                     .state('app.details', { url: '/details/:itemId', templateUrl: '/templates/app/chatroom/details.html', controller: 'DetailsController' })
                     .state('app.selling', { url: '/selling', templateUrl: '/templates/app/selling/selling.html', controller: 'SellingController' })
-                    //.state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' });
-                    .state('app.account', { url: '/account', templateUrl: '/templates/app/account/test.html', controller: 'TestController' })
-    
-        
+                    .state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' });       
 });
 
 angular.module('app').run(function (AuthenticationService) { AuthenticationService.initialize(); });

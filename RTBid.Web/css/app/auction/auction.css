@@ -304,3 +304,10 @@ body
     padding: 5px 10px;
     position: relative;
 }
+
+profile-pane2.header2 {
+    background: #8e44ad;
+    color: #fff;
+    /*padding: 5px 15px;
+    border-radius: 10px 10px 0 0;*/
+}

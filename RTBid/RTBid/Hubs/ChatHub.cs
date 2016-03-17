@@ -10,6 +10,8 @@ namespace RTBid.Hubs
     [HubName("ChatHub")]
     public class ChatHub : Hub
     {
+
+
         public void send(string name, string message)
         {
             Clients.All.BroadcastMessage(name, message);

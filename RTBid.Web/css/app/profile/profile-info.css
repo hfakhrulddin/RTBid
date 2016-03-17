@@ -4,7 +4,7 @@
 
 /* -- color classes -- */
 .coralbg {
-    background-color: #FA396F;
+    background-color: #3f9684;
 } 
 
 .coral {
@@ -75,7 +75,8 @@ div.btn-group-vertical>a:hover {
 }
 
 div.btn-group-vertical>a.active {
-    background: #FA396F;
+    /*background: #FA396F;*/
+    background: #3f9684;
     box-shadow: none;
     color: white;
 }

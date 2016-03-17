@@ -8,4 +8,3 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\RTBid.Core.dll.config
 C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\Newtonsoft.Json.dll
 C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\Stripe.net.dll
 C:\Div\Origin\RTBid\RTBid\RTBid.Core\bin\Debug\Newtonsoft.Json.xml
-C:\Div\Origin\RTBid\RTBid\RTBid.Core\obj\Debug\RTBid.Core.csprojResolveAssemblyReference.cache

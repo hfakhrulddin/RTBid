@@ -5708,7 +5708,9 @@ button.list-group-item-danger.active:focus {
 }
 .panel-primary > .panel-heading {
   color: #fff;
-  background-color: #337ab7;
+  /*background-color: #337ab7;*/
+   /*background-color: #8e44ad;*/
+   background-color:#1abc9c;
   border-color: #337ab7;
 }
 .panel-primary > .panel-heading + .panel-collapse > .panel-body {
@@ -5744,7 +5746,9 @@ button.list-group-item-danger.active:focus {
 }
 .panel-info > .panel-heading {
   color: #31708f;
-  background-color: #d9edf7;
+  /*background-color: #d9edf7;*/
+     /*background-color: #8e44ad;*/
+     background-color:#1abc9c;
   border-color: #bce8f1;
 }
 .panel-info > .panel-heading + .panel-collapse > .panel-body {

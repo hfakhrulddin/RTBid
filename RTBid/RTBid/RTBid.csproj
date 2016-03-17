@@ -169,6 +169,7 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
+    <Compile Include="Hubs\AuctionHub.cs" />
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Infrastructure\BaseApiController.cs" />
     <Compile Include="Infrastructure\RTBidAuthorizationServerProvider.cs" />

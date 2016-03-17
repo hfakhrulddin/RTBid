@@ -138,7 +138,9 @@ a.small {
 /* Search Styles */
 
 .search {
-  background: #063642;
+  /*background: #063642;*/
+   background:#1abc9c;
+  /*background:#8e44ad;*/
   color: #EEE8D5;
   width: 90%;
   min-width: 320px;
@@ -167,7 +169,8 @@ a.small {
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 4px;
-    background: #C61C6F;
+    /*background: #C61C6F;*/
+    background:#8dd8b4;
     color: #FCF4DC;
     -webkit-user-select: none;
        -moz-user-select: none;
