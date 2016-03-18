@@ -161,7 +161,7 @@ a.small {
     padding: 6px 12px;
     margin-bottom: 0;
     font-size: 1rem;
-    line-height: 140%;
+    line-height: 128%;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -333,4 +333,29 @@ a.small {
   opacity: 0;
   height: 0;
   overflow: hidden;
+}
+
+#chatPanel .panel-body {
+    min-height: 280px;
+    max-height: 280px;
+    overflow: auto;
+}
+
+#onlineUsersPanel .panel-body {
+    min-height: 538px;
+    max-height: 538px;
+    overflow: auto;
+}
+
+#bottom2 {
+}
+/**/
+.direct-chat-img {
+    border: 1px solid #fff;
+    background: #3f9684 none repeat scroll 0 0;
+    border-radius: 50%;
+    float: left;
+    height: 40px;
+    margin: -21px 0 0;
+    width: 40px;
 }

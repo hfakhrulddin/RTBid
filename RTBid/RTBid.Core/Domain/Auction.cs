@@ -20,6 +20,7 @@ namespace RTBid.Core.Domain
         public DateTime? DeletedDate { get; set; }
 
         public DateTime StartTime { get; set; }
+        public DateTime? StartedTime { get; set; }
         public DateTime? ClosedTime { get; set; }
 
         public virtual Product Product { get; set; }
@@ -48,6 +49,7 @@ namespace RTBid.Core.Domain
         NumberOfGuests = model.NumberOfGuests;
         StartTime = model.StartTime;
         ClosedTime = model.ClosedTime;
+        StartedTime = model.StartedTime;
     }
   }
 }

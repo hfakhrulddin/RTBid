@@ -20,8 +20,8 @@ using RTBid.Data.Infrastructure;
 using RTBid.Data.Repository;
 using RTBid.Infrastructure;
 
+/////using Microsoft.Owin;
 [assembly: OwinStartup(typeof(RTBidManager.Api.Startup))]
-
 
 namespace RTBidManager.Api
 {
@@ -60,8 +60,6 @@ namespace RTBidManager.Api
             app.UseOAuthAuthorizationServer(authorizationOptions);
             app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
-
-
 
         public Container ConfigureSimpleInjector(IAppBuilder app)
         {

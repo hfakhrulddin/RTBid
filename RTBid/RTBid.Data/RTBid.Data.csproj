@@ -76,6 +76,10 @@
     <Compile Include="Migrations\201603112151429_new4.Designer.cs">
       <DependentUpon>201603112151429_new4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603181936400_Added started time.cs" />
+    <Compile Include="Migrations\201603181936400_Added started time.Designer.cs">
+      <DependentUpon>201603181936400_Added started time.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
@@ -112,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603112151429_new4.resx">
       <DependentUpon>201603112151429_new4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603181936400_Added started time.resx">
+      <DependentUpon>201603181936400_Added started time.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,9 +12,9 @@ namespace RTBid.Hubs
     {
 
 
-        public void send(string name, string message)
+        public void clientTOs(string name, string message)
         {
-            Clients.All.BroadcastMessage(name, message);
+            Clients.All.sTOclients(name, message);
         }
     }
 }

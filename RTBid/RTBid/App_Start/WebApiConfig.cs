@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using RTBid.Core.Domain;
 using RTBid.Core.Models;
+using RTBid.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace RTBid
@@ -26,11 +28,11 @@ namespace RTBid
 
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
-
-            CreateMaps(); // Call the Method below
-
+            // Call the Method below
+            CreateMaps(); 
+            //Heart Beat for Hubs
+            HostingEnvironment.RegisterObject(new RTBidHeartbeatTimer());
         }
-
 
         public static void CreateMaps()
         {

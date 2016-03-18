@@ -18,3 +18,4 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Data\bin\Debug\Stripe.net.dll
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new2.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new3.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new4.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.Addedstartedtime.resources

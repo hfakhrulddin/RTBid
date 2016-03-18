@@ -20,5 +20,6 @@ namespace RTBid.Core.Models
 
         public DateTime StartTime { get; set; }
         public DateTime? ClosedTime { get; set; }
+        public DateTime? StartedTime { get; set; }
     }
 }
