@@ -1,14 +1,18 @@
-﻿// JUST AN ANGULAR SERVICE
-angular.module('app').factory('auctionProxy', function ($rootScope, Hub, $timeout) {
-    var hub = new Hub('AuctionHub', {
+﻿angular.module('app').factory('auctionProxy', ["Hub", "$timeout", "$http", "$rootScope", "$location",
+
+    function ($rootScope, Hub, $timeout, $http, $location) {
+
+        var hub = new Hub("AuctionHub", {
         listeners: {
             'newChatMessage': function (message) {
+                $rootScope.$apply();
+                var x = 1;
                 $rootScope.$broadcast('rtb.newChatMessage', message);
             },
             'newBid': function (bid) {
                 $rootScope.$broadcast('rtb.newBid', bid);
             },
-            'auctionStarted': function(auctionId) {
+            'auctionStarted': function (auctionId) {
                 $rootScope.$broadcast('rtb.auctionStarted', auctionId);
             },
             'auctionFinished': function (auctionId) {
@@ -16,6 +20,7 @@ angular.module('app').factory('auctionProxy', function ($rootScope, Hub, $timeou
             },
             'heartbeat': function (heartbeat) {
                 // implement
+                $rootScope.$broadcast('rtb.heartbeat', auctionId);
             }
         },
 
@@ -25,45 +30,49 @@ angular.module('app').factory('auctionProxy', function ($rootScope, Hub, $timeou
             console.error(error);
         },
 
-        stateChanged: function (state) {
-            switch (state.newState) {
-                case $.signalR.connectionState.connecting:
-                    toastr["success"]("Connection Status", "Connecting..");
-                    break;
-                case $.signalR.connectionState.connected:
-                    toastr["success"]("Connection Status", "Connected!");
-                    break;
-                case $.signalR.connectionState.reconnecting:
-                    toastr["warning"]("Connection Status", "Lost connection, reconnecting..");
-                    //your code here
-                    break;
-                case $.signalR.connectionState.disconnected:
-                    toastr["error"]("Connection Status", "Connection Lost!");
-                    //your code here
-                    break;
-            }
+    stateChanged: function (state) {
+        switch (state.newState) {
+            case $.signalR.connectionState.connecting:
+                toastr["success"]("Connection Status", "Connecting..");
+                break;
+            case $.signalR.connectionState.connected:
+                toastr["success"]("Connection Status", "Connected!");
+                break;
+            case $.signalR.connectionState.reconnecting:
+                toastr["warning"]("Connection Status", "Lost connection, reconnecting..");
+                //your code here
+                break;
+            case $.signalR.connectionState.disconnected:
+                toastr["error"]("Connection Status", "Connection Lost!");
+                //your code here
+                break;
         }
+    },
+        hubDisconnected: function () {
+            if (hub.connection.lastError) {
+                hub.connection.start();
+            }
+        },
+        transport: 'webSockets',
+        logging: true
     });
 
-    var sendChatMessage = function (auctionId, message) {
-        hub.sendChatMessage(auctionId, message);
-        };
+        sendChatMessage = function (message) {
+            var chat = $.connection.AuctionHub;
+            chat.server.sendChatMessage(message);
 
+            hub.sendChatMessage(message);
+        }
 
-
-
-    var sendChatMessage = function (auctionId, message) {
-        chat.server.send(auctionId, message);
-      
-    };
-
-
-    var bidOnItem = function (auctionId, message) {
-        // implement
-    };
+        bidOnItem = function (auctionId, bidAmount) {
+            var chat = $.connection.AuctionHub;
+            chat.server.bidOnItem(auctionId, bidAmount);
+        }
 
     return {
+
         sendChatMessage: sendChatMessage,
         bidOnItem: bidOnItem
-    };
-});
+    }
+
+}]);

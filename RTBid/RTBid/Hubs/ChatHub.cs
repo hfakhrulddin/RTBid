@@ -10,11 +10,16 @@ namespace RTBid.Hubs
     [HubName("ChatHub")]
     public class ChatHub : Hub
     {
-
-
-        public void clientTOs(string name, string message)
+        public void sendChatMessage(string message)
         {
-            Clients.All.sTOclients(name, message);
+            // take the message
+            // grab the auction
+            Clients.All.newChatMessage(message);
         }
+
+        //        public void bidOnItem(int auctionId, decimal bidAmount)
+        //        {
+
+        //        }
     }
 }

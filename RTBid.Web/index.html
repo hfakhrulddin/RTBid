@@ -29,13 +29,8 @@
     <!--<body style="background:url('45.jpg') fixed no-repeat; background-size:cover">-->
         <div ui-view></div>
 
-        <script src="bower_components/jquery-1.7.2.min/index.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
-        <!--Two lines below are signalR-->
-        <script src="Scripts/jquery.signalR-2.1.2.js"></script>
-        <script src="http://localhost:50255/signalr/hubs" type="text/javascript"></script>
 
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -51,9 +46,14 @@
         <script src="js/infrastructure/authentication.interceptor.js"></script>
         <script src="js/infrastructure/authentication.service.js"></script>
 
+        <!--lines below are signalR-->
+        <script src="bower_components/signalr/jquery.signalR.js"></script>
+        <script src="http://localhost:50255/signalr/hubs" type="text/javascript"></script>
+        <script src="bower_components/angular-signalr-hub/signalr-hub.js"></script> 
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-signalr-hub/angular-signalr-hub.js"></script>
+
         <script src="js/app/app.ctrl.js"></script>
-    
-        <script src="js/app/auction/auction.factory.js"></script>
 
         <script src="js/home/home.ctrl.js"></script>
         <script src="js/home/home.resource.js"></script>
@@ -66,6 +66,7 @@
 
         <script src="js/app/auction/auction.ctrl.js"></script>
         <script src="js/app/auction/auction.resource.js"></script>
+        <script src="js/app/auction/auction.factory.js"></script>
 
         <script src="js/app/profile/profile.ctrl.js"></script>
         <script src="js/app/profile/profile.resource.js"></script>

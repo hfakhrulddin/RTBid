@@ -70,3 +70,5 @@ C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Client.xml
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 C:\Div\Origin\RTBid\RTBid\RTBid\bin\Microsoft.Web.Infrastructure.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\log4net.dll
+C:\Div\Origin\RTBid\RTBid\RTBid\bin\log4net.xml

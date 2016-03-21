@@ -1,32 +1,31 @@
-﻿angular.module('app').controller('AuctionController', function ($scope, $timeout, AuctionResource, $interval, $http, $routeParams, $stateParams, $rootScope, $location, $anchorScroll) {
+﻿angular.module('app').controller('AuctionController',
 
-    ///////dynamic bidding part (The Proxy).................................................
-    ////        $scope.messages = [];
+function (auctionProxy, $scope, $rootScope, $timeout, AuctionResource, $interval, $http, $routeParams, $stateParams, $location, $anchorScroll) {
 
-    ////          $rootScope.$on('rtb.newChatMessage', function (message) {
-    ////          $scope.messages.push(message);
-    ////          });
+        $('#message').val('').focus();
+        $.connection.hub.url = 'http://localhost:50255/signalr';
+        $.connection.hub.logging = true;
+        $.connection.hub.start().done();
+
+        $rootScope.$on('rtb.newChatMessage', function (message) {
+            var x = 1;
+            $scope.discussion.push(message);
+        });
+
+        $scope.chats = auctionProxy;
+        $scope.sendChat = function () {
+            $scope.chats.sendChatMessage($scope.message);
+            $('#message').val('');
+
+        }
+    });
+
+            //var chat = $.connection.AuctionHub;
+            //chat.client.newChatMessage = function (message) {
+            //    $('#discussion').append('<li><strong class="pull-right primary-font">' + message + '</strong>&nbsp;&nbsp;' + "name" + '</li><br/>',
+            //        '<img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/><br/>')
+            //};
+
+     
 
 
-              $(function () {
-                          $.connection.hub.url = 'http://localhost:50255/signalr';
-                          var chat = $.connection.ChatHub;
-
-                          chat.client.sTOclients = function (name, message) {
-                              $('#discussion').append('<li><strong class="pull-right primary-font">' + message + '</strong>&nbsp;&nbsp;' + name + '</li><br/>',
-                                  '<img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/><br/>')
-                          };
-
-                          $('#displayname').val(prompt('Enter You Name:', ""));
-                          $('#message').focus();
-                          $.connection.hub.logging = true;
-
-                          $.connection.hub.start().done(function () {
-                              $('#sendmessage').click(function () {
-                                  chat.server.clientTOs($('#displayname').val(), $('#message').val());
-                                  $('#message').val('');
-                              });
-                          });
-                      });
-
-});

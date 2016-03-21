@@ -24,18 +24,18 @@ namespace RTBid.Infrastructure
         }
 
         public void Stop(bool immediate)
-       {
+        {
 
             throw new Exception();
 
-        //    _timer.Dispose();
-        //    HostingEnvironment.UnregisterObject(this);
-       }
+            //    _timer.Dispose();
+            //    HostingEnvironment.UnregisterObject(this);
+        }
     }
 }
 
 
-///////
+/////
 //public class BackgroundUptimeServerTimer : IRegisteredObject
 //{
 //    private readonly DateTime _internetBirthDate = On.October.The29th.In(1969);
@@ -68,5 +68,5 @@ namespace RTBid.Infrastructure
 //        _uptimeHub.Clients.All.internetUpTime(uptime.Humanize(5));
 //    }
 
-   
+
 //}
