@@ -1,9 +1,9 @@
-﻿angular.module('app').factory('AuctionResource', function (apiUrl, $resource) {
+﻿//angular.module('app').factory('AuctionResource', function (apiUrl, $resource) {
 
-    return $resource(apiUrl + '/auctions/:auctionId', { auctionId: '@auctionId' }, {
+//    return $resource(apiUrl + '/auctions/:auctionId', { auctionId: '@auctionId' }, {
 
-        'update': {
-            method: 'PUT'
-        }
-    });
-});
+//        'update': {
+//            method: 'PUT'
+//        }
+//    });
+//});

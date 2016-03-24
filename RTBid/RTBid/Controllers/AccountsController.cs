@@ -85,5 +85,14 @@ namespace RTBid.Controllers
 
             return Ok();
         }
+
+        //[Route("api/accounts/currentuser")]
+        //[HttpGet]
+        //[ResponseType(typeof(UserModel))]
+        //public IHttpActionResult GetCurrentUser()
+        //{
+        //    return Ok(Mapper.Map<UserModel>(CurrentUser));
+        //}
+
     }
 }

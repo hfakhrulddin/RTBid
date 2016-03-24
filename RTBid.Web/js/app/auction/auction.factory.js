@@ -1,78 +1,106 @@
-﻿angular.module('app').factory('auctionProxy', ["Hub", "$timeout", "$http", "$rootScope", "$location",
-
+﻿angular.module('app').factory('auctionProxy',
     function ($rootScope, Hub, $timeout, $http, $location) {
 
         var hub = new Hub("AuctionHub", {
-        listeners: {
-            'newChatMessage': function (message) {
-                $rootScope.$apply();
-                var x = 1;
-                $rootScope.$broadcast('rtb.newChatMessage', message);
-            },
-            'newBid': function (bid) {
-                $rootScope.$broadcast('rtb.newBid', bid);
-            },
-            'auctionStarted': function (auctionId) {
-                $rootScope.$broadcast('rtb.auctionStarted', auctionId);
-            },
-            'auctionFinished': function (auctionId) {
-                $rootScope.$broadcast('rtb.auctionFinished', auctionId);
-            },
-            'heartbeat': function (heartbeat) {
-                // implement
-                $rootScope.$broadcast('rtb.heartbeat', auctionId);
-            }
-        },
 
-        methods: ['sendChatMessage', 'bidOnItem'],
+            listeners: {
+                'newChatMessage': function (auctionId, message) {
+                    $rootScope.$broadcast('rtb.newChatMessage', message);
+                },
+                'newBid': function (currentAmount, timerRest) {
+                    $rootScope.$broadcast('rtb.newBid', currentAmount, timerRest);
+                },
+                'auctionStarted': function (auctionId, openedBit) {
+                    $rootScope.$broadcast('rtb.auctionStarted', auctionId, openedBit);
+                },
+                'auctionFinished': function (auctionId, closedBit) {
+                    $rootScope.$broadcast('rtb.auctionFinished', auctionId, closedBit);
+                },
+                'heartbeat': function () {
+                    // implement
+                    $rootScope.$broadcast('rtb.heartbeat');
+                }
+            },
 
-        errorHandler: function (error) {
-            console.error(error);
-        },
+            methods: ['sendChatMessage', 'bidOnItem'],
 
-    stateChanged: function (state) {
-        switch (state.newState) {
-            case $.signalR.connectionState.connecting:
-                toastr["success"]("Connection Status", "Connecting..");
-                break;
-            case $.signalR.connectionState.connected:
-                toastr["success"]("Connection Status", "Connected!");
-                break;
-            case $.signalR.connectionState.reconnecting:
-                toastr["warning"]("Connection Status", "Lost connection, reconnecting..");
-                //your code here
-                break;
-            case $.signalR.connectionState.disconnected:
-                toastr["error"]("Connection Status", "Connection Lost!");
-                //your code here
-                break;
-        }
-    },
-        hubDisconnected: function () {
+            errorHandler: function (error) {
+                console.error(error);
+            },
+            hubDisconnected: function () {
+                if (hub.connection.lastError) {
+                    hub.connection.start();
+                }
+            },
+
+            stateChanged: function (state) {
+                switch (state.newState) {
+                    case $.signalR.connectionState.connecting:
+                        toastr["success"]("Connection Status", "Connecting..");
+                        break;
+                    case $.signalR.connectionState.connected:
+                        toastr["success"]("Connection Status", "Connected!");
+                        break;
+                    case $.signalR.connectionState.reconnecting:
+                        toastr["warning"]("Connection Status", "Lost connection, reconnecting..");
+                        //your code here
+                        break;
+                    case $.signalR.connectionState.disconnected:
+                        toastr["error"]("Connection Status", "Connection Lost!");
+                        //your code here
+                        break;
+                }
+            },
+            transport: 'webSockets',
+            logging: true,
+       
+        });
+
+        hub.connection.url = 'http://localhost:50255/signalr/hubs';
+        hub.connection.logging = true;
+        hub.connection.start();
+        var chat = $.connection.AuctionHub;
+
+        hub.connection.disconnected(function () {
             if (hub.connection.lastError) {
-                hub.connection.start();
+
+                setTimeout(function () {
+                    hub.connection.url = 'http://localhost:50255/signalr/hubs';
+                    hub.connection.logging = true;
+                    hub.connection.start();
+                    var chat = $.connection.AuctionHub;
+
+                }, 50);
             }
-        },
-        transport: 'webSockets',
-        logging: true
+        });
+
+        var sendChatMessage = function (auctionId, message) {
+
+            hub.connection.url = 'http://localhost:50255/signalr/hubs';
+            hub.connection.logging = true;
+
+            hub.connection.start().done(function () {
+                hub.sendChatMessage(auctionId, message)
+
+            }
+            )};
+         
+        var bidOnItem = function (auctionId, bidding) {
+
+            hub.connection.url = 'http://localhost:50255/signalr/hubs';
+            hub.connection.logging = true;
+
+            hub.connection.start().done(function () {
+                auctionId = 5;
+                hub.bidOnItem(auctionId, bidding)
+            }
+        )};
+     
+        return {
+
+            sendChatMessage: sendChatMessage,
+            bidOnItem: bidOnItem
+        }
+
     });
 
-        sendChatMessage = function (message) {
-            var chat = $.connection.AuctionHub;
-            chat.server.sendChatMessage(message);
-
-            hub.sendChatMessage(message);
-        }
-
-        bidOnItem = function (auctionId, bidAmount) {
-            var chat = $.connection.AuctionHub;
-            chat.server.bidOnItem(auctionId, bidAmount);
-        }
-
-    return {
-
-        sendChatMessage: sendChatMessage,
-        bidOnItem: bidOnItem
-    }
-
-}]);

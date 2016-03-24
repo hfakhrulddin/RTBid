@@ -21,6 +21,10 @@ using RTBid.Data.Repository;
 using RTBid.Infrastructure;
 using Microsoft.AspNet.SignalR;
 using log4net;
+using Microsoft.AspNet.SignalR.Hubs;
+using RTBid.Hubs;
+using SimpleInjector.Diagnostics;
+
 
 /////using Microsoft.Owin;
 [assembly: OwinStartup(typeof(RTBidManager.Api.Startup))]
@@ -31,44 +35,42 @@ namespace RTBidManager.Api
     {
         public void Configuration(IAppBuilder app)
         {
-            
-            var container = ConfigureSimpleInjector(app);
-            ConfigureOAuth(app, container);
+            var Container = ConfigureSimpleInjector(app);
+            ConfigureOAuth(app, Container);
 
             HttpConfiguration config = new HttpConfiguration
             {
-                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container)
+                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container)
             };
 
-            WebApiConfig.Register(config);
+
+        WebApiConfig.Register(config);
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
-            app.MapSignalR(); //SignalR Added
-
-
 
             LogManager.GetLogger("").Info("SignalRChat Initializing.");
-            // Branch the pipeline here for requests that start with "/signalr"
+
             app.Map("/signalr", map =>
             {
-                // Setup the CORS middleware to run before SignalR.
-                // By default this will allow all origins. You can 
-                // configure the set of origins and/or http verbs by
-                // providing a cors options with a different policy.
                 map.UseCors(CorsOptions.AllowAll);
+           
                 var hubConfiguration = new HubConfiguration
                 {
-                    EnableDetailedErrors = true,
+                    //Resolver = new SignalRSimpleInjectorDependencyResolver(Container),
+                    EnableDetailedErrors = false,
                     EnableJSONP = true,
-                    EnableJavaScriptProxies = true
+                    EnableJavaScriptProxies = true,
+                    //Resolver = resolver
                 };
-                // Run the SignalR pipeline. We're not using MapSignalR
-                // since this branch already runs under the "/signalr"
-                // path.
-                map.RunSignalR(hubConfiguration);
-            });
-        }
 
+                map.RunSignalR(hubConfiguration);
+
+            });
+                app.MapSignalR();
+        
+          }
+          
+ 
         public void ConfigureOAuth(IAppBuilder app, Container container)
         {
             Func<IAuthorizationRepository> authRepositoryFactory = container.GetInstance<IAuthorizationRepository>;
@@ -88,45 +90,51 @@ namespace RTBidManager.Api
 
         public Container ConfigureSimpleInjector(IAppBuilder app)
         {
-            var container = new Container();
+            var Container = new Container();
 
-            container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
+            Container.Options.DefaultScopedLifestyle = new ExecutionContextScopeLifestyle();
 
             /////Database Mapping
-            container.Register<IDatabaseFactory, DatabaseFactory>(Lifestyle.Scoped);
-            container.Register<IUnitOfWork, UnitOfWork>();
+            Container.Register<IDatabaseFactory, DatabaseFactory>(Lifestyle.Scoped);
+            Container.Register<IUnitOfWork, UnitOfWork>();///???????
 
             //// The Project Domin Repository Mapping
-            container.Register<IAuctionRepository, AuctionRepository>();
-            container.Register<IBidRepository, BidRepository>();
-            container.Register<ICategoryRepository, CategoryRepository>();
-            container.Register<ICommentRepository, CommentRepository>();
-            container.Register<IProductRepository, ProductRepository>();
-            container.Register<IPurchaseRepository, PurchaseRepository>();
-            container.Register<IRoleRepository, RoleRepository>();
-            container.Register<IUserRoleRepository, UserRoleRepository>();
-            container.Register<IRTBidUserRepository, RTBidUserRepository>();
-            container.Register<IUserAuctionRepository, UserAuctionRepository>();
+            Container.Register<IAuctionRepository, AuctionRepository>();/////CR
+            Container.Register<IBidRepository, BidRepository>();
+            Container.Register<ICategoryRepository, CategoryRepository>();
+            Container.Register<ICommentRepository, CommentRepository>();
+            Container.Register<IProductRepository, ProductRepository>();
+            Container.Register<IPurchaseRepository, PurchaseRepository>();
+            Container.Register<IRoleRepository, RoleRepository>();
+            Container.Register<IUserRoleRepository, UserRoleRepository>();
+            Container.Register<IRTBidUserRepository, RTBidUserRepository>();
+            Container.Register<IUserAuctionRepository, UserAuctionRepository>();
 
             //// Authorization Method Mapping 
-            container.Register<IUserStore<RTBidUser, int>, UserStore>(Lifestyle.Scoped);
-            container.Register<IAuthorizationRepository, AuthorizationRepository>(Lifestyle.Scoped);
+            Container.Register<IUserStore<RTBidUser, int>, UserStore>(Lifestyle.Scoped);
+            Container.Register<IAuthorizationRepository, AuthorizationRepository>(Lifestyle.Scoped);
 
             /////The Payment Method Mapping
-            container.Register<IPaymentService, StripePaymentService>();
+            Container.Register<IPaymentService, StripePaymentService>();
+
+            // Register signalr hubs with SimpleInjector
+            //Container.Register<AuctionHub>();
+            //SimpleInjectorHubActivator activator = new SimpleInjectorHubActivator(Container);
+            //GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => activator);
 
             // more code to facilitate a scoped lifestyle
             app.Use(async (context, next) =>
             {
-                using (container.BeginExecutionContextScope())
+                using (Container.BeginExecutionContextScope())
                 {
                     await next();
                 }
             });
 
-            container.Verify();
+            Container.Verify();
 
-            return container;
+
+            return Container;
         }
     }
 }

@@ -164,7 +164,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\RTBidHeartbeatTimer.cs" />
+    <Compile Include="Infrastructure\HubActivator.cs" />
+    <Compile Include="Infrastructure\RTBidWatchdog.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AuctionsController.cs" />
@@ -175,10 +176,11 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchasesController.cs" />
     <Compile Include="Hubs\AuctionHub.cs" />
-    <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Hubs\HeartBeatHub.cs" />
     <Compile Include="Infrastructure\BaseApiController.cs" />
     <Compile Include="Infrastructure\RTBidAuthorizationServerProvider.cs" />
+    <Compile Include="Infrastructure\SignalRSimpleInjectorDependencyResolver.cs" />
+    <Compile Include="Infrastructure\SimpleInjectorHubActivator.cs" />
+    <Compile Include="Infrastructure\SimpleInjectorResolver .cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\PaymentRequest.cs" />
     <Compile Include="Startup.cs" />

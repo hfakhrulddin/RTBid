@@ -18,8 +18,17 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
                     .state('app.auction', { url: '/auction', templateUrl: '/templates/app/auction/auction.html', controller:'AuctionController' })
                     .state('app.list', { url: '/list', templateUrl: '/templates/app/chatroom/list.html',controller: 'ListController' })
                     .state('app.details', { url: '/details/:itemId', templateUrl: '/templates/app/chatroom/details.html', controller: 'DetailsController' })
-                    .state('app.selling', { url: '/selling', templateUrl: '/templates/app/selling/selling.html', controller: 'SellingController' })
-                    .state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' });       
+                    .state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' })
+
+                        .state('app.selling', { url: '/selling', abstract: true, template: '<ui-view/>' })
+                        .state('app.selling.grid', { url: '/grid', templateUrl: '/templates/app/selling/selling.grid.html', controller: 'SellingGridController' })
+                        .state('app.selling.detail', { url: '/detail/:id', templateUrl: '/templates/app/selling/selling.detail.html', controller: 'SellingDetailController' })
+                        .state('app.selling.add', { url: '/add', templateUrl: '/templates/app/selling/selling.add.html', controller: 'SellingAddController' })
+
+         .state('app.myAuctions', { url: '/myAuctions', abstract: true, template: '<ui-view/>' })
+                        .state('app.myAuctions.grid', { url: '/grid', templateUrl: '/templates/app/myAuctions/myAuctions.grid.html', controller: 'MyAuctionsGridController' })
+                        .state('app.myAuctions.detail', { url: '/detail/:id', templateUrl: '/templates/app/myAuctions/myAuctions.detail.html', controller: 'MyAuctionsDetailController' })
+                        .state('app.myAuctions.add', { url: '/add', templateUrl: '/templates/app/myAuctions/myAuctions.add.html', controller: 'MyAuctionsAddController' })
 });
 
 angular.module('app').run(function (AuthenticationService) { AuthenticationService.initialize(); });

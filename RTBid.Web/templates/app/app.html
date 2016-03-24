@@ -27,7 +27,7 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>Hussen Fakhrulddin</strong>
+                                            <strong>{{user.UserName}}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -43,7 +43,7 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>Hussen Fakhrulddin</strong>
+                                            <strong>{{user.UserName}}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -59,7 +59,7 @@
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading">
-                                            <strong>Hussen Fakhrulddin</strong>
+                                            <strong>{{user.UserName}}</strong>
                                         </h5>
                                         <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur...</p>
@@ -100,7 +100,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Hussen Fakhrulddin<b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{user.UserName}}<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="/#/app/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -136,16 +136,22 @@
                 <h4>Categories</h4>
             </a>
         </li>
-        <li>
+        <!--<li>
             <a href="/#/app/account" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
                 <span class="fa fa-pie-chart green"></span>
                 <h4>Statistics</h4>
             </a>
+        </li>-->
+        <li>
+            <a href="#/app/selling/grid" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                <span class="fa fa-cart-plus green"></span>
+                <h4>My product</h4>
+            </a>
         </li>
         <li>
-            <a href="/#/app/selling" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+            <a href="#/app/myAuctions/grid" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
                 <span class="fa fa-usd green"></span>
-                <h4>Selling</h4>
+                <h4>My Auctions</h4>
             </a>
         </li>
         <li>

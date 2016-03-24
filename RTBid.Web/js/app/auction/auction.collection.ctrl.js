@@ -52,7 +52,7 @@
 
 //    ///Chat function Jquery
 //    //$(function () {
-//    //    $.connection.hub.url = 'http://localhost:50255/signalr';
+//    //    $.connection.hub.url = 
 //    //    var chat = $.connection.ChatHub;
 
 //    //    chat.client.BroadcastMessage = function (name, message) {
@@ -75,7 +75,7 @@
 //    ///Chat function Jquery
 
 //    $(function () {
-//        $.connection.hub.url = 'http://localhost:50255/signalr';
+//        $.connection.hub.url = 
 //        var chat = $.connection.ChatHub;
 
 //        chat.client.BroadcastMessage = function (name, message) {
@@ -146,7 +146,7 @@
 
 //    //angular.module('app').controller('AuctionController', function ($scope) {
 //    //    $(function () {
-//    //        $.connection.hub.url = 'http://localhost:50255/signalr';
+//    //        $.connection.hub.url = 
 //    //        var chat = $.connection.ChatHub;
 
 //    //        chat.client.BroadcastMessage = function (name, message) {
@@ -199,3 +199,51 @@
 
 
 //});
+
+//var chat = $.connection.AuctionHub;
+//chat.client.newChatMessage = function (message) {
+//    $('#discussion').append('<li><strong class="pull-right primary-font">' + message + '</strong>&nbsp;&nbsp;' + "name" + '</li><br/>',
+//        '<img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/><br/>')
+//};
+
+//$.connection.hub.url =
+//$.connection.hub.logging = true;
+//$.connection.hub.start().done();
+
+//var chat = $.connection.AuctionHub;
+
+//chat.client.addNewMessageToPage = function (name, message) {
+//$scope.discussion.add(message);
+//$rootScope.$apply();
+//$scope.discussion.push(message);
+
+
+//var chat = $.connection.AuctionHub;
+//chat.server.sendChatMessage(message);
+
+//if (!hub.connectionStarted) {
+//$.connection.hub.url = 
+//$.connection.hub.logging = true;
+//$.connection.hub.start().done();
+//hub.promise.done();
+//$.connection.AuctionHub;
+//hub.connection.start()
+//hub.promise.done(
+//hub.connectionStarted = true
+
+//C#
+//public void Countdown()
+//{
+//    bool closedBit = false;
+//    DateTime total = DateTime.Now.AddSeconds(20);
+//    TimeSpan time1 = new TimeSpan();
+//   
+
+//    while (time1.Seconds > 0)
+//    {
+//        time1 = total - DateTime.Now;
+//    }
+
+//    closedBit = true;
+//    EndAuction(4, closedBit);
+//}

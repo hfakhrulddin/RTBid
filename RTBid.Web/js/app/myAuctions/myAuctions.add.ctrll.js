@@ -1,4 +1,21 @@
-﻿$(document).ready(function () {
+﻿angular.module('app').controller('MyAuctionsAddController', function ($scope, $stateParams, MyAuctionsResource) {
+
+    $scope.Auction = {};
+
+    $scope.saveAuction = function () {
+
+        MyAuctionsResource.save($scope.auction, function () {
+            $scope.auction = {};
+            alert('Create property successful');
+        });
+    };
+
+});
+
+
+
+
+$(document).ready(function () {
     var panels = $('.user-infos');
     var panelsButton = $('.dropdown-user');
     panels.hide();

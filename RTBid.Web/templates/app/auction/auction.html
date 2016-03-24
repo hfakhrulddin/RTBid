@@ -6,6 +6,7 @@
                 <span class="fa fa-comment"></span> Chat
                 <div class="btn-group pull-right btn-group-xs">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <add input="{REQUEST_URI}" pattern="^/(signalr)" negate="true" />
                         <span class="fa fa-chevron-down"></span>
                     </button>
                     <ul class="dropdown-menu slidedown">
@@ -44,20 +45,25 @@
                 </div>
             </div>
             <img class="img-responsive" src="../../../images/profile/3.jpg" />
+            <div type="hidden" id="divUTC" class="center-block"></div>
+            <div id="divLocal"></div>
             <div class="panel-body" id="chatblock">
                 <ul class="chat">
                     <li class="right clearfix">
                         <span class="chat-img pull-right">
                             <!--<img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">-->
-                          
                         </span>
                         <div class="chat-body clearfix">
                             <div class="header">
                                 <!--<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>-->
                                 <strong class="pull-right primary-font"></strong>
                             </div>
-                            <p id="discussion">{{discussion}}</p>
-                        </div>
+                            <!--<div ng-repeat="discussion in discussions">
+                                <p id="discussion"><strong class="pull-right primary-font"></strong><br/><br/></p>
+                                <img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img" />
+                                  </div>-->
+                                <p id="discussion"><strong class="pull-right primary-font"></strong><br /><br /></p>
+                            </div>
                     </li>
                 </ul>
                 <a id="bottom" ></a>
@@ -66,7 +72,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Type your message here..." id="message" ng-model="message">
                     <span class="input-group-btn">
-                        <button class="btn btn-warning" ng-click="sendChat()">Send</button>
+                        <button class="btn btn-warning" id="sendChat" ng-click="sendChat()">Send</button>
                     </span>
                 </div>
             </div>
@@ -112,7 +118,7 @@
                 </div>
 
                 <div>
-                    <a class="btn btn-primary btn-block text-center" href="/#/app/auction" role="button" ng-click="TimeDown()"><h4>New Bid !!!</h4></a>
+                    <button class="btn btn-primary btn-block text-center" href="/#/app/auction" ng-click="TimeDown()"><h4>New Bid !!!</h4></button>
                 </div>
                 <div id="pane1" class="well text-center">
                     <h4 class="fa fa-clock-o"> Time Remaining</h4>
@@ -120,7 +126,7 @@
                 </div>
                 <div id="pane1" class="well text-center">
                     <h4 class="fa fa-dollar"> Current Bid</h4>
-                    <h1>{{countDowntext}}</h1>
+                    <h1>{{CurrentAmount}}</h1>
                 </div>
             </div>
         </div>
