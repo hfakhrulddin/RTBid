@@ -50,15 +50,13 @@
     text-decoration: none;
     color: #333;
     
-    /*border: 0 solid #8e44ad;*/
-    border: 0 solid #8dd8b4;
+    border: 0 solid #729A92;
     border-radius: 0;
     padding: 10px 0 4px 0;
 }
 
 .dashboard-tabs > li.active > a {
-    /*color: #8e44ad;*/
-     color:#8dd8b4;
+     color:#729A92;
     
     border-width: 8px 0;
     padding: 0;
@@ -90,7 +88,7 @@
 }
 
 .dashboard-tabs > li > a .glyphicon {
-    color: #1abc9c;
+    color: #729A92;
     padding-top: 16px;
     font-size: 40px;
 }
@@ -130,8 +128,7 @@
 }
 
 .profile-pane .header {
-    /*background: #8e44ad;*/
-     background:#1abc9c;
+     background:#729A92;
     color: #fff;
     padding: 5px 15px;
     border-radius: 10px 10px 0 0;

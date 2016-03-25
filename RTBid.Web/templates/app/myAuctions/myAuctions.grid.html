@@ -20,17 +20,16 @@
 
                 <td>{{auction.AuctionTitle}}</td>
                 <td>{{auction.Product.Name}}</td>
-                <td>{{auction.StartTime}}</td>
-                <td>{{auction.ClosedTime}}</td>
-                <td>{{auction.CreatedDate}}</td>
-           
+                <td>{{auction.StartTime | date: 'shortDate'}}</td>
+                <td>{{auction.ClosedTime | date: 'shortDate'}}</td>
+                <td>{{auction.CreatedDate | date: 'shortDate'}}</td>
+
                 <td>
                     <a class="btn btn-default" ng-href="#/app/myAuctions/detail/{{auction.AuctionId}}">Edit</a>
                     <a class="btn btn-danger" ng-click="deleteAuction(auction)">Delete</a>
 
                 </td>
             </tr>
-
         </tbody>
     </table>
 </div>

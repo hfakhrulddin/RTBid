@@ -45,7 +45,7 @@ namespace RTBid.Core.Domain
         {
             ProductId = model.ProductId;
             CategoryId = model.CategoryId;
-            UserId = model.UserId;
+           // UserId = model.UserId;
             Name = model.Name;
             Description = model.Description;
             ShippingCost = model.ShippingCost;

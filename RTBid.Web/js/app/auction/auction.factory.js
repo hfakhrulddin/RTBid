@@ -7,8 +7,8 @@
                 'newChatMessage': function (auctionId, message) {
                     $rootScope.$broadcast('rtb.newChatMessage', message);
                 },
-                'newBid': function (currentAmount, timerRest) {
-                    $rootScope.$broadcast('rtb.newBid', currentAmount, timerRest);
+                'newBid': function (auctionId, currentAmount) {
+                    $rootScope.$broadcast('rtb.newBid', auctionId, currentAmount);
                 },
                 'auctionStarted': function (auctionId, openedBit) {
                     $rootScope.$broadcast('rtb.auctionStarted', auctionId, openedBit);
@@ -85,14 +85,13 @@
             }
             )};
          
-        var bidOnItem = function (auctionId, bidding) {
+        var bidOnItem = function (auctionId) {
 
             hub.connection.url = 'http://localhost:50255/signalr/hubs';
             hub.connection.logging = true;
 
             hub.connection.start().done(function () {
-                auctionId = 5;
-                hub.bidOnItem(auctionId, bidding)
+                hub.bidOnItem(auctionId)
             }
         )};
      

@@ -1,12 +1,13 @@
-﻿angular.module('app').controller('MyAuctionsDetailController', function ($scope, $stateParams, MyAuctionsResource) {
+﻿angular.module('app').controller('MyAuctionsDetailController', function ($scope, $stateParams, $state, AuctionResource) {
 
     //get the id from the URL
-    $scope.auction = MyAuctionsResource.get({ auctionId: $stateParams.id });
+    $scope.auction = AuctionResource.get({ auctionId: $stateParams.id });
 
     //Save the new data
     $scope.saveAuction = function () {
         $scope.auction.$update(function () {
-            alert('save successful');
+            toastr.success('Success', 'Your auction has been updateded');
+            $state.go('app.myAuctions.grid');
 
         });
     };

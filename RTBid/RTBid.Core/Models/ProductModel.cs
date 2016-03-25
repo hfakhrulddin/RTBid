@@ -20,5 +20,8 @@ namespace RTBid.Core.Models
         public decimal? SellingPrice { get; set; }
         public decimal? StartBid { get; set; }
         public decimal? MinimumIncrement { get; set; }
+
+        public CategoryModel Category { get; set; }
+        public RTBidUserModel RTBidUser { get; set; }
     }
 }

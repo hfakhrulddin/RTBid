@@ -22,17 +22,6 @@ namespace RTBid.Hubs
         private System.Threading.Timer _timer2;
         public HashSet<Auction> AuctionsInMemory = new HashSet<Auction>();
 
-        #region dependeny Injection
-        private readonly IAuctionRepository _auctionRepository;
-        private readonly IUnitOfWork _unitOfWork;
-
-        //public AuctionHub(IAuctionRepository auctionRepository, IUnitOfWork unitOfWork)
-        //{
-        //    _auctionRepository = auctionRepository;
-        //    _unitOfWork = unitOfWork;
-        //}
-        #endregion
-
         #region receive
         public void sendChatMessage(int auctionId, string message)
         {
@@ -42,16 +31,16 @@ namespace RTBid.Hubs
             Clients.All.newChatMessage(auctionId, message);
         }
 
-        public void bidOnItem(int auctionId, bool bidding)
+        public void bidOnItem(int auctionId)
         {
             //var memoryAuction = AuctionsInMemory.FirstOrDefault(a => a.AuctionId == auctionId);
             //memoryAuction.Bids.Add(new Bid
             //{
-            //    CurrentAmount = bidAmount
-            //});
 
-            Clients.All.newBid(auctionId, bidding);
-            bidding = false;
+            //});
+            var CurrentAmount = 5; ///temp
+            Clients.All.newBid(auctionId, CurrentAmount);
+         
             CountDownTimer();
         }
         #endregion
@@ -59,7 +48,7 @@ namespace RTBid.Hubs
         #region broadcast
         public void StartAuction(int id, bool openedBit)
         {
-            AuctionsInMemory.Add(_auctionRepository.GetById(id));
+            //AuctionsInMemory.Add(_auctionRepository.GetById(id));
             Clients.All.auctionStarted(id, openedBit);
         }
 

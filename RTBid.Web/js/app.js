@@ -15,7 +15,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
                     .state('app.profile', { url: '/profile', templateUrl: '/templates/app/profile/profile.html', controller: 'ProfileController' })
                     .state('app.categories', { url: '/categories', templateUrl: '/templates/app/categories/categories.html', controller: 'CategoriesController' })
                     .state('app.category', { url: '/category', templateUrl: '/templates/app/category/category.html', controller: 'CategoryController' })
-                    .state('app.auction', { url: '/auction', templateUrl: '/templates/app/auction/auction.html', controller:'AuctionController' })
+                    .state('app.auction', { url: '/auction/:auctionId', templateUrl: '/templates/app/auction/auction.html', controller:'AuctionController' })
                     .state('app.list', { url: '/list', templateUrl: '/templates/app/chatroom/list.html',controller: 'ListController' })
                     .state('app.details', { url: '/details/:itemId', templateUrl: '/templates/app/chatroom/details.html', controller: 'DetailsController' })
                     .state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' })
