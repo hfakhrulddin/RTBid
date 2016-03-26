@@ -99,7 +99,10 @@ namespace RTBid.Controllers
 
             var dbAuction = new Auction(auction);
 
-            //dbAuction.RTBidUserId = CurrentUser.Id;
+            dbAuction.RTBidUsers.Add(new UserAuction { RTBidUser = CurrentUser });
+
+            dbAuction.ClosedTime = dbAuction.StartTime.AddHours(1);
+
             _auctionRepository.Add(dbAuction);
             _unitOfWork.Commit();
 

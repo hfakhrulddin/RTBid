@@ -13,84 +13,39 @@ using System.Web.UI;
 using System.Threading;
 using RTBid.Hubs;
 using System.Web.Hosting;
+using RTBid.Data.Infrastructure;
 
 namespace RTBid.Hubs
 {
     [HubName("AuctionHub")]
     public class AuctionHub : Hub
     {
-        private System.Threading.Timer _timer2;
-        public HashSet<Auction> AuctionsInMemory = new HashSet<Auction>();
-
         #region receive
         public void sendChatMessage(int auctionId, string message)
         {
             if (message == null) { message = ""; }
-            // take the message
-            // grab the auction
+            
             Clients.All.newChatMessage(auctionId, message);
         }
-
-        public void bidOnItem(int auctionId)
-        {
-            //var memoryAuction = AuctionsInMemory.FirstOrDefault(a => a.AuctionId == auctionId);
-            //memoryAuction.Bids.Add(new Bid
-            //{
-
-            //});
-            var CurrentAmount = 5; ///temp
-            Clients.All.newBid(auctionId, CurrentAmount);
-         
-            CountDownTimer();
-        }
         #endregion
 
-        #region broadcast
-        public void StartAuction(int id, bool openedBit)
+        #region relay
+        // receive from watchdog
+        public void tellClientsThatAuctionStarted(int auctionId)
         {
-            //AuctionsInMemory.Add(_auctionRepository.GetById(id));
-            Clients.All.auctionStarted(id, openedBit);
+            Clients.All.auctionStarted(auctionId);
+        }
+        
+        // receive from watchdog
+        public void tellClientsThatAuctionEnded(int auctionId)
+        {
+            Clients.All.auctionEnded(auctionId);
         }
 
-        ////TODO: Research how to implement signalr heartbeats
-        public void Heartbeat()
+        // receive from watchdog
+        public void tellClientsAboutNewBid(DateTime timeStamp,decimal currentAmount)
         {
-            //foreach (var auction in AuctionsInMemory)
-            //{
-            //    // is this auction supposed to start right now?
-            //    if (auction.StartTime <= DateTime.Now && auction.StartedTime == null)
-            //    {
-            //        StartAuction(auction.AuctionId);
-            //    }
-
-            //    // is this auction supposed to end right now?
-
-            //}
-            //Clients.All.heartbeat();
-        }
-
-        public void EndAuction(int id, bool closedBit)
-        {
-            //var memoryAuction = AuctionsInMemory.FirstOrDefault(a => a.AuctionId == id);
-
-            //    _auctionRepository.Update(memoryAuction);
-
-            //    _unitOfWork.Commit();
-            Clients.All.auctionFinished(id, closedBit);
-        }
-        #endregion
-
-        #region countdown
-        public void CountDownTimer()
-        {
-            _timer2 = new System.Threading.Timer(OnTimerElapsed, null, TimeSpan.FromSeconds(20), TimeSpan.FromMilliseconds(0));
-            //_timer2.Change(TimeSpan.FromSeconds(20), TimeSpan.FromMilliseconds(0));
-        }
-
-        private void OnTimerElapsed(object sender)
-        {
-             bool closedBit = true;
-            EndAuction(7, closedBit);
+            Clients.All.newBid(timeStamp, currentAmount);
         }
         #endregion
     }

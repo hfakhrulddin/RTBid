@@ -53,6 +53,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "RTBidAdmin.Web", "..\RTBidA
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RTBid.Watchdog", "RTBid.Watchdog\RTBid.Watchdog.csproj", "{1227BDA0-541C-401E-86C0-9740A5A7AD77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{8E6F4ECC-5805-49FB-8891-2D6DE932BA59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E6F4ECC-5805-49FB-8891-2D6DE932BA59}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E6F4ECC-5805-49FB-8891-2D6DE932BA59}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1227BDA0-541C-401E-86C0-9740A5A7AD77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1227BDA0-541C-401E-86C0-9740A5A7AD77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1227BDA0-541C-401E-86C0-9740A5A7AD77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1227BDA0-541C-401E-86C0-9740A5A7AD77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,15 +19,16 @@ namespace RTBid.Controllers
     [Authorize]
     public class BidsController : BaseApiController
     {
+        private readonly IAuctionRepository _auctionRepository;
         private readonly IBidRepository _bidRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public BidsController(IBidRepository bidRepository, IUnitOfWork unitOfWork, IRTBidUserRepository rtbidUserRepository) : base(rtbidUserRepository)
+        public BidsController(IBidRepository bidRepository, IAuctionRepository auctionRepository, IUnitOfWork unitOfWork, IRTBidUserRepository rtbidUserRepository) : base(rtbidUserRepository)
         {
+            _auctionRepository = auctionRepository;
             _bidRepository = bidRepository;
             _unitOfWork = unitOfWork;
         }
-        //private RTBidDataContext db = new RTBidDataContext();
 
         // GET: api/Bids
         public IEnumerable<BidModel> GetBids()
@@ -96,16 +97,26 @@ namespace RTBid.Controllers
                 return BadRequest(ModelState);
             }
 
-            //db.Bids.Add(bid);
-            //db.SaveChanges();
             var dbBid = new Bid(bid);
-
             dbBid.UserId = CurrentUser.Id;
+
+            var auction = _auctionRepository.GetById(dbBid.AuctionId);
+           
+            if (auction.StartedTime == null) auction.StartedTime = DateTime.Now;
+            auction.ClosedTime = DateTime.Now.AddSeconds(30);
+
+            auction.StartBid = auction.StartBid +5;
+            dbBid.CurrentAmount = auction.StartBid;
+
             _bidRepository.Add(dbBid);
+            _unitOfWork.Commit();
+
+            _auctionRepository.Update(auction);
             _unitOfWork.Commit();
 
             bid.BidId = dbBid.BidId;
             bid.TimeStamp = dbBid.TimeStamp;
+            bid.CurrentAmount = dbBid.CurrentAmount;
 
             return CreatedAtRoute("DefaultApi", new { id = bid.BidId }, bid);
         }

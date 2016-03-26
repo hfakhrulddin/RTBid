@@ -1,6 +1,7 @@
 ﻿using RTBid.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace RTBid.Core.Domain
         public DateTime StartTime { get; set; }
         public DateTime? StartedTime { get; set; }
         public DateTime? ClosedTime { get; set; }
+        public DateTime? ActualClosedTime { get; set; }
+        public decimal StartBid { get; set; }
 
         public virtual Product Product { get; set; }
 
@@ -32,9 +35,12 @@ namespace RTBid.Core.Domain
 
         public Auction()
         {
+            RTBidUsers = new Collection<UserAuction>();
+            Comments = new Collection<Comment>();
+            Bids = new Collection<Bid>();
         }
 
-        public Auction(AuctionModel model)
+        public Auction(AuctionModel model) : this()
         {
             this.Update(model);
             this.CreatedDate = DateTime.Now;
@@ -50,6 +56,7 @@ namespace RTBid.Core.Domain
             StartTime = model.StartTime;
             ClosedTime = model.ClosedTime;
             StartedTime = model.StartedTime;
-        }
+            StartBid = model.StartBid;
+    }
     }
 }

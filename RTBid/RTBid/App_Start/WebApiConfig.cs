@@ -31,7 +31,6 @@ namespace RTBid
             // Call the Method below
             CreateMaps(); 
             //Heart Beat for Hubs CR!!!
-            HostingEnvironment.RegisterObject(new RTBidWatchdog());
         }
 
         public static void CreateMaps()

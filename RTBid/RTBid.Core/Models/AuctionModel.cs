@@ -21,6 +21,7 @@ namespace RTBid.Core.Models
         public DateTime StartTime { get; set; }
         public DateTime? ClosedTime { get; set; }
         public DateTime? StartedTime { get; set; }
+        public decimal StartBid { get; set; }
 
         public ProductModel Product { get; set; }
     }

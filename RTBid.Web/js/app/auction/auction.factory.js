@@ -13,7 +13,7 @@
                 'auctionStarted': function (auctionId, openedBit) {
                     $rootScope.$broadcast('rtb.auctionStarted', auctionId, openedBit);
                 },
-                'auctionFinished': function (auctionId, closedBit) {
+                'auctionEnded': function (auctionId, closedBit) {
                     $rootScope.$broadcast('rtb.auctionFinished', auctionId, closedBit);
                 },
                 'heartbeat': function () {

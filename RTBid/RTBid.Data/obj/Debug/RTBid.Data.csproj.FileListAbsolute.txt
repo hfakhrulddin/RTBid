@@ -19,3 +19,6 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new2.resour
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new3.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new4.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.Addedstartedtime.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.AddActualClosedDateToAuction.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new5.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new6.resources
