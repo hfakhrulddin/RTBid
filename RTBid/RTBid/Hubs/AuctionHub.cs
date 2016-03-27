@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Microsoft.AspNet.SignalR;
-using RTBid.Core.Domain;
 using Microsoft.AspNet.SignalR.Hubs;
-using RTBid.Core.Repository;
-using RTBid.Core.Infrastructure;
-using System.Reflection;
-using RTBid.Infrastructure;
 using System.Web.UI;
 using System.Threading;
-using RTBid.Hubs;
-using System.Web.Hosting;
-using RTBid.Data.Infrastructure;
 
 namespace RTBid.Hubs
 {
@@ -21,11 +10,11 @@ namespace RTBid.Hubs
     public class AuctionHub : Hub
     {
         #region receive
-        public void sendChatMessage(int auctionId, string message)
+        public void sendChatMessage(int auctionId, string message, string userName)
         {
             if (message == null) { message = ""; }
             
-            Clients.All.newChatMessage(auctionId, message);
+            Clients.All.newChatMessage(auctionId, message, userName);
         }
         #endregion
 
@@ -43,10 +32,35 @@ namespace RTBid.Hubs
         }
 
         // receive from watchdog
-        public void tellClientsAboutNewBid(DateTime timeStamp,decimal currentAmount)
+        public void tellClientsAboutNewBid(DateTime timeStamp, decimal currentAmount)
         {
             Clients.All.newBid(timeStamp, currentAmount);
         }
         #endregion
-    }
+
+        #region OnlieUsers
+        //List<string> UsersList= new List<string>();
+
+        //public void Join(string userName)
+        //{
+        //    //Check if the list has been chagned (new join or someone left), if Yes then broadcast the new list
+        //    UsersList.Add(userName);
+        //    Clients.All.onlineUsers(UsersList);
+        //}
+        #endregion
+
+        #region pageStartUp
+        //public void pageStartUpServer(int auctionId, DateTime ColseTime, decimal currentAmount)
+        //{
+        //    System.Threading.Timer t = new System.Threading.Timer(pageStartUp, null, 10000, 1000);
+
+        //}
+
+        //private void pageStartUp(object state)
+        //{
+        //    Clients.All.startUp(auctionId, ColseTime, currentAmount);
+        //}
+    
+    #endregion
+}
 }

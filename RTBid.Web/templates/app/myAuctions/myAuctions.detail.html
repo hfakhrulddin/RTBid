@@ -18,10 +18,11 @@
                                             <td>Product Name:</td>                                                      
                                             <td><input type="text" class="form-control input-lg text-center" ng-model="auction.Product.Name"/></td>
                                         </tr>                                                                          
-                                        <tr>                                                                           
-                                            <td>Start Time</td>                                                     
-                                            <td><input type="text" class="form-control input-lg text-center" ng-model="auction.StartTime" /></td>
-                                        </tr>                                                                          
+                                        <tr>
+                                        <tr>
+                                            <td>Start Date:</td>
+                                            <td><input datetime-picker type="datetime" ng-model="auction.StartTime" hour="24" minute="59" /></td>
+                                        </tr>                                                                                                                                               
                                         <tr>                                                                           
                                     </tbody>
                                 </table>

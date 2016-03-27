@@ -27,15 +27,11 @@
                                     <td><input type="text" class="form-control input-lg" ng-model="auction.StartBid" /></td>
                                 </tr>
                                 <tr>
-                                    <td>Start Date</td>
-                                    <td>
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
-                                            </span>
-                                            <input type="text" class="form-control" ng-model="auction.StartTime" />
-                                        </div>
-                                    </td>
+                                    <td>Start Date:</td>
+                                    <td><input datetime-picker type="datetime" ng-model="auction.StartTime" hour="24" minute="59"/></td>
+                                </tr>
+                                <tr>
+
                                 </tr>
                             </tbody>
                         </table>

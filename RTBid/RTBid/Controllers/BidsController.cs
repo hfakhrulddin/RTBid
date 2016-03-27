@@ -14,6 +14,7 @@ using RTBid.Core.Infrastructure;
 using AutoMapper;
 using RTBid.Core.Models;
 
+
 namespace RTBid.Controllers
 {
     [Authorize]
@@ -96,27 +97,36 @@ namespace RTBid.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            /// Creat a new Bid and attach the user to that Bid
             var dbBid = new Bid(bid);
-            dbBid.UserId = CurrentUser.Id;
 
             var auction = _auctionRepository.GetById(dbBid.AuctionId);
-           
-            if (auction.StartedTime == null) auction.StartedTime = DateTime.Now;
-            auction.ClosedTime = DateTime.Now.AddSeconds(30);
+            if (auction.StartTime > DateTime.Now || auction.ActualClosedTime <= DateTime.Now)
+            {
+                return Ok();
+            }
+            else
+            {
+               
+                dbBid.UserId = CurrentUser.Id;
 
-            auction.StartBid = auction.StartBid +5;
-            dbBid.CurrentAmount = auction.StartBid;
+                if (auction.StartedTime == null) auction.StartedTime = DateTime.Now;
+                auction.ClosedTime = DateTime.Now.AddSeconds(20);
 
-            _bidRepository.Add(dbBid);
-            _unitOfWork.Commit();
+                auction.StartBid = auction.StartBid + 5;
+                dbBid.CurrentAmount = auction.StartBid;
 
-            _auctionRepository.Update(auction);
-            _unitOfWork.Commit();
+                _auctionRepository.Update(auction);
+                _unitOfWork.Commit();
 
-            bid.BidId = dbBid.BidId;
-            bid.TimeStamp = dbBid.TimeStamp;
-            bid.CurrentAmount = dbBid.CurrentAmount;
+                _bidRepository.Add(dbBid);
+                _unitOfWork.Commit();
+
+                bid.BidId = dbBid.BidId;
+                bid.TimeStamp = dbBid.TimeStamp;
+                bid.CurrentAmount = dbBid.CurrentAmount;
+
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = bid.BidId }, bid);
         }

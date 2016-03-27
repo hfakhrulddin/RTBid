@@ -1,61 +1,94 @@
 ﻿angular.module('app').controller('AuctionController',
 function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routeParams, BidResource, AuctionResource, ProfileResource,
-    $stateParams, $location, $anchorScroll) {
+    $stateParams, $location, $anchorScroll, ProductResource) {
 
     function activate() {
         ProfileResource.getCurrentUser().then(function (response) {
             $scope.user = response;
         });
-        $scope.auction = AuctionResource.get({ auctionId: $stateParams.auctionId });
     }
 
     activate();
 
+    $scope.auction = AuctionResource.get({ auctionId: $stateParams.auctionId });
+    $scope.product = ProductResource.get({ productId: $stateParams.productId });
+
     $('#message').val('').focus();
     $scope.sendChat = function () {
-        auctionProxy.sendChatMessage($scope.auction.AuctionId, $scope.message);
+        auctionProxy.sendChatMessage($stateParams.auctionId, $scope.message, $scope.user.UserName);
         $scope.message = '';
     }
 
     $scope.sendBid = function () {
-        toastr.success('Good Luck', 'Good Luck');
-        
         // send bid to BidResource
         var bid = new BidResource();
-        bid.AuctionId = $scope.auction.AuctionId;
-        bid.$save(function(newBid) {
-            // tell people about this new bid (after the bid has been saved to db)
-            //auctionProxy.bidOnItem($scope.auction.AuctionId, newBid.CurrentAmount);   
-            auctionProxy.bidOnItem($scope.auction.AuctionId);
+        bid.AuctionId = $stateParams.auctionId;
+        bid.$save(function (bid) {
+        // tell people about this new bid (after the bid has been saved to db) 
+        //auctionProxy.bidOnItem($scope.auction.AuctionId);
         });
     }
 
-    $rootScope.$on('rtb.newChatMessage', function (event, message) {
+    $rootScope.$on('rtb.newChatMessage', function (event, message, userName) {
         toastr.info('New Message');
         $scope.discussions = [];
         //$scope.sendChat = function () {
         //$scope.discussions.push({ message: message });
         $('#discussion').append('<li><strong class="pull-right primary-font">'+message+'</strong>&nbsp;&nbsp;' +
-        "<h4>Hussen Fakhrulddin</h4>" +'</li><br/>'+ '<img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/><br/>')
-    });
-
-    $rootScope.$on('rtb.auctionStarted', function (event, auctionId, openedBit) {
-        toastr.info("The Auction Has been Started");
-        console.log('Started!!!');
-    });
+        '<h4>'+userName+'</h4>' +'</li><br/>'+ '<img alt="message user image" src="../../../images/profile/robo.jpg" class="direct-chat-img"/><br/>')
+   
+        });
     
-    $rootScope.$on('rtb.auctionFinished', function (event, auctionId, closedBit) {
-        toastr.info("The Auction Has been Finished");
-        console.log('Finished!!!');
+    /////Scroll
+    $('#sendChat').click(function () {
+        $location.hash('bottom');
+        $anchorScroll();
     });
 
-    $rootScope.$on('rtb.heartbeat', function (event) {
-        console.log('HEARTBEAT!!!');
+    ///HB
+    //var hbcounter = 0;
+    //$interval(function () {
+    //    //auctionProxy.join($scope.user.UserName);
+
+    //    hbcounter++;
+    //    if (hbcounter > 1000) { hbcounter = 0 } else { $scope.heartpulseShow = hbcounter; };
+    //}, 90000000);
+
+    $rootScope.$on('rtb.auctionStarted', function (event, auctionId) {
+        $scope.checked = false;
+        $scope.soldImg = false;
+            toastr.success("The Auction Has been Started");
+            console.log('Started!!!');
+        });
+    
+    $rootScope.$on('rtb.auctionFinished', function (event, auctionId) {
+        $scope.checked = true;
+        $scope.soldImg = true;
+            toastr.info("The Auction Has been Finished");
+            console.log('Finished!!!');
     });
+
+    $rootScope.$on('rtb.startUp', function (auctionId, colseTime, currentAmount) {
+        $scope.auction.CurrentAmount =  currentAmount;
+        $scope.countDowntext = colseTime;
+        toastr.info("Updated !!");
+        console.log('Updated !!!');
+    });
+    $scope.auction.CurrentAmount = $scope.auction.StartBid;
+    $scope.countDowntext = $scope.auction.ClosedTime;
+
+    //$rootScope.$on('rtb.heartbeat', function (event) {
+    //    console.log('HEARTBEAT!!!');
+    //});
+
+    //$rootScope.$on('rtb.onlineUsers', function (event, usersList) {
+    //    $scope.usersList = usersList;
+    //});
 
     /////CountDown Timer Not Angular
     $rootScope.$on('rtb.newBid', function (event, auctionId, currentAmount) {
         toastr.info('New Bid');
+
         $scope.auction.CurrentAmount = currentAmount;
 
         var id = window.setTimeout(function () { }, 0);
@@ -74,12 +107,6 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
             }
         };
         countDowner()
-    });
-
-    /////Scroll
-    $('#sendChat').click(function () {
-        $location.hash('bottom');
-        $anchorScroll();
     });
 
 });

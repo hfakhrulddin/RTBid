@@ -87,9 +87,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-3">
-                        <img class="img-rounded img-responsive" src="http://placehold.it/125x125">
+                        <img class="img-rounded img-responsive" src="http://lorempixel.com/125/125/technics">
                     </div>
                     <div class="col-sm-9">
+                        <img class="img-rounded img-responsive" ng-show="soldImg"src="../../../55.jpg" />
                         <table class="table table-user-information">
                             <tbody>
                                 <tr>
@@ -110,18 +111,17 @@
                                 </tr>
                                 <tr>
                                     <td>Starting Value:</td>
-                                    <td class="text-right">{{product.StartBid | currency:'$'}}</td>
+                                    <td class="text-right">{{auction.StartBid | currency:'$'}}</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
                 <div>
-                    <button class="btn btn-primary btn-block text-center" ng-click="sendBid()">
-                        <h4>New Bid !!!</h4>
-                    </button>
-                </div>
+                    <button class="btn btn-primary btn-block text-center" ng-model="checked" ng-disabled="checked" ng-click="sendBid()">
+                     <h4>New Bid !!!</h4>
+                        </button>
+                    </div>
                 <div id="pane1" class="well text-center">
                     <h4 class="fa fa-clock-o"> Time Remaining</h4>
                     <h1>OO:OO:{{countDowntext}}</h1>
@@ -141,8 +141,12 @@
             </div>
             <div class="panel-body no-pad">
                 <ul class="list-group">
-                    <li style="margin-left: 4px;" ng-repeat="number in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]">
+                    <!--<li style="margin-left: 4px;" ng-repeat="number in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]">
                         <i class="fa fa-user fa-spin"></i> Hussen Fakhrulddin
+                    </li>-->
+
+                    <li style="margin-left: 4px;" ng-repeat="user in usersList">
+                        <i class="fa fa-user fa-spin"></i> {{user}}
                     </li>
                 </ul>
                 <a id="bottom2"></a>

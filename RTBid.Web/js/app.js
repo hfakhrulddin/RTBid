@@ -1,5 +1,5 @@
 ﻿/// <reference path="http://localhost:50255/View/Home/Test2.html" />
-var myApp = angular.module('app', ['ngResource', 'ui.router', 'LocalStorageModule', 'stripe.checkout', 'ngRoute', 'artistControllers', 'SignalR']);
+var myApp = angular.module('app', ['ngResource', 'ui.router', 'LocalStorageModule', 'angularjs-datetime-picker','stripe.checkout', 'ngRoute', 'artistControllers', 'SignalR']);
 
 angular.module('app').value('apiUrl', 'http://localhost:50255/api/');
 

@@ -4,25 +4,30 @@
         var hub = new Hub("AuctionHub", {
 
             listeners: {
-                'newChatMessage': function (auctionId, message) {
-                    $rootScope.$broadcast('rtb.newChatMessage', message);
+                'newChatMessage': function (auctionId, message, userName) {
+                    $rootScope.$broadcast('rtb.newChatMessage', message, userName);
                 },
                 'newBid': function (auctionId, currentAmount) {
                     $rootScope.$broadcast('rtb.newBid', auctionId, currentAmount);
                 },
-                'auctionStarted': function (auctionId, openedBit) {
-                    $rootScope.$broadcast('rtb.auctionStarted', auctionId, openedBit);
+                'auctionStarted': function (auctionId) {
+                    $rootScope.$broadcast('rtb.auctionStarted', auctionId);
                 },
-                'auctionEnded': function (auctionId, closedBit) {
-                    $rootScope.$broadcast('rtb.auctionFinished', auctionId, closedBit);
+                'auctionEnded': function (auctionId) {
+                    $rootScope.$broadcast('rtb.auctionFinished', auctionId);
                 },
-                'heartbeat': function () {
-                    // implement
-                    $rootScope.$broadcast('rtb.heartbeat');
-                }
+                'startUp': function (auctionId, colseTime, currentAmount) {
+                    $rootScope.$broadcast('rtb.startUp', auctionId, colseTime, currentAmount);
+                },
+                //'heartbeat': function () {
+                //    $rootScope.$broadcast('rtb.heartbeat');
+                //},
+                //'onlineUsers': function (usersList) {
+                //    $rootScope.$broadcast('rtb.onlineUsers', usersList);
+                //},
             },
 
-            methods: ['sendChatMessage', 'bidOnItem'],
+            methods: ['sendChatMessage', 'bidOnItem', 'join', 'pageStartUp'],
 
             errorHandler: function (error) {
                 console.error(error);
@@ -60,6 +65,7 @@
         hub.connection.logging = true;
         hub.connection.start();
         var chat = $.connection.AuctionHub;
+        
 
         hub.connection.disconnected(function () {
             if (hub.connection.lastError) {
@@ -74,13 +80,13 @@
             }
         });
 
-        var sendChatMessage = function (auctionId, message) {
+        var sendChatMessage = function (auctionId, message, userName) {
 
             hub.connection.url = 'http://localhost:50255/signalr/hubs';
             hub.connection.logging = true;
 
             hub.connection.start().done(function () {
-                hub.sendChatMessage(auctionId, message)
+                hub.sendChatMessage(auctionId, message, userName)
 
             }
             )};
@@ -92,13 +98,30 @@
 
             hub.connection.start().done(function () {
                 hub.bidOnItem(auctionId)
+                    
+                });
+            
+            };
+
+        var pageStartUp = function (userName) {
+
+            hub.connection.url = 'http://localhost:50255/signalr/hubs';
+            hub.connection.logging = true;
+
+            hub.connection.start().done(function () {
+                hub.pageStartUp()
+
             }
-        )};
+            )
+        };
+        pageStartUp();
      
         return {
 
             sendChatMessage: sendChatMessage,
-            bidOnItem: bidOnItem
+            bidOnItem: bidOnItem,
+            //join: join,
+            pageStartUp: pageStartUp
         }
 
     });

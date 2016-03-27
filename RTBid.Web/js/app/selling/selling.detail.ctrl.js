@@ -1,7 +1,7 @@
 ﻿angular.module('app').controller('SellingDetailController', function ($scope, $stateParams, $state, SellingResource) {
 
     //get the id from the URL
-    $scope.producty = SellingResource.get({ productId: $stateParams.id });
+    $scope.product = SellingResource.get({ productId: $stateParams.id });
 
     //Save the new data
     $scope.saveProduct = function () {

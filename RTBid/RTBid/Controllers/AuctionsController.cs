@@ -46,6 +46,13 @@ namespace RTBid.Controllers
                 return NotFound();
             }
 
+            if (auction.ActualClosedTime <= DateTime.Now) // Find a way to not allow the user to access the aution before it statrs???
+            {
+
+                return NotFound();
+            }
+
+
             return Ok(Mapper.Map<AuctionModel>(auction));
         }
 
@@ -99,9 +106,8 @@ namespace RTBid.Controllers
 
             var dbAuction = new Auction(auction);
 
-            dbAuction.RTBidUsers.Add(new UserAuction { RTBidUser = CurrentUser });
-
-            dbAuction.ClosedTime = dbAuction.StartTime.AddHours(1);
+            dbAuction.RTBidUsers.Add(new UserAuction { RTBidUser = CurrentUser });// attach the user to the auction 
+            dbAuction.ClosedTime = dbAuction.StartTime.AddHours(1);// Set the expected end time if no bid happened
 
             _auctionRepository.Add(dbAuction);
             _unitOfWork.Commit();
