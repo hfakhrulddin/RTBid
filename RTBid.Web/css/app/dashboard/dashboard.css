@@ -166,10 +166,10 @@
 }
 
 .cause-info {
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;
     padding: 5px;
     background: #fff;
-    border-radius: 5px;
+    border-radius: 5px;*/
     display: inline-block;
 }
 
@@ -362,4 +362,10 @@
     border-radius: 5px;
     padding: 5px;
     margin-bottom: 40px;
+}
+
+#over img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

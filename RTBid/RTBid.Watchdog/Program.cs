@@ -28,7 +28,6 @@ namespace RTBid.Watchdog
 
             Console.WriteLine("Any key to stop watchdog..");
             Console.ReadLine();
-            
         }
 
         static void Update(object sender)
@@ -49,9 +48,13 @@ namespace RTBid.Watchdog
                     {
                         if (auction.StartTime <= DateTime.Now && auction.StartedTime == null)
                         {
-                            // this is a bottleneck that needs to be made async (DataBase)
-                            auction.StartedTime = DateTime.Now;
-                            db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
+                                // this is a bottleneck that needs to be made async (DataBase)
+                                auction.StartedTime = DateTime.Now;
+                                auction.OpenSoon = false;
+                                auction.InAction = true;
+
+                                db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
+
                             db.SaveChanges();
 
                             Console.WriteLine("\tTelling clients that auction started");
@@ -64,7 +67,11 @@ namespace RTBid.Watchdog
                         if (auction.ClosedTime <= DateTime.Now && auction.ActualClosedTime == null) // we also need to store the "actualclosedtime"
                         {
                             auction.ActualClosedTime = DateTime.Now;
-                            db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
+
+                                auction.InAction = false;
+                                auction.ItemSold = true;
+            
+                                db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
                             db.SaveChanges();
 
                             Console.WriteLine("\tTelling clients that auction ended");

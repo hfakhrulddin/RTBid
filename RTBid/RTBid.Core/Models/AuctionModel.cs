@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTBid.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace RTBid.Core.Models
         public DateTime? ClosedTime { get; set; }
         public DateTime? StartedTime { get; set; }
         public decimal StartBid { get; set; }
+
+        public bool OpenSoon { get; set; }
+        public bool InAction { get; set; }
+        public bool ItemSold { get; set; }
+        public bool Rescheduled { get; set; }
+     
+        public Status Status { get; set; }
 
         public ProductModel Product { get; set; }
     }

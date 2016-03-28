@@ -8,6 +8,14 @@ using System.Threading.Tasks;
 
 namespace RTBid.Core.Domain
 {
+    public enum Status
+    {
+        OpenSoon = 1,
+        InAction = 2,
+        Sold = 3,
+        Rescheduled = 4
+    }
+
     public class Auction
     {
         public int AuctionId { get; set; }
@@ -25,6 +33,14 @@ namespace RTBid.Core.Domain
         public DateTime? ClosedTime { get; set; }
         public DateTime? ActualClosedTime { get; set; }
         public decimal StartBid { get; set; }
+
+        public Status Status { get; set; }
+
+        public bool OpenSoon { get; set; }
+        public bool InAction { get; set; }
+        public bool ItemSold { get; set; }
+        public bool Rescheduled { get; set; }
+
 
         public virtual Product Product { get; set; }
 
@@ -57,6 +73,13 @@ namespace RTBid.Core.Domain
             ClosedTime = model.ClosedTime;
             StartedTime = model.StartedTime;
             StartBid = model.StartBid;
-    }
+
+            OpenSoon = model.OpenSoon;
+            InAction = model.InAction;
+            ItemSold = model.ItemSold;
+            Rescheduled = model.Rescheduled;
+
+            Status = model.Status;
+}
     }
 }

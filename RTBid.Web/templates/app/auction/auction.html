@@ -90,24 +90,23 @@
                         <img class="img-rounded img-responsive" src="http://lorempixel.com/125/125/technics">
                     </div>
                     <div class="col-sm-9">
-                        <img class="img-rounded img-responsive" ng-show="soldImg"src="../../../55.jpg" />
                         <table class="table table-user-information">
                             <tbody>
                                 <tr>
                                     <td>Product Name: </td>
-                                    <td class="text-right">{{product.Name}}</td>
+                                    <td class="text-right">{{auction.Product.Name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Description: </td>
-                                    <td class="text-right">{{product.Description}}</td>
+                                    <td class="text-right">{{auction.Product.Description}}</td>
                                 </tr>
                                 <tr>
                                     <td>Shipping Cost:</td>
-                                    <td class="text-right">{{product.ShippingCost | currency:'$'}}</td> <!-- this is an angular filter -->
+                                    <td class="text-right">{{auction.Product.ShippingCost | currency:'$'}}</td> <!-- this is an angular filter -->
                                 </tr>
                                 <tr>
                                     <td>Price:</td>
-                                    <td class="text-right">{{product.SellingPrice | currency:'$'}}</td>
+                                    <td class="text-right">{{auction.Product.SellingPrice | currency:'$'}}</td>
                                 </tr>
                                 <tr>
                                     <td>Starting Value:</td>
@@ -128,6 +127,12 @@
                 </div>
                 <div id="pane1" class="well text-center">
                     <h4 class="fa fa-dollar"> Current Bid</h4>
+                    <div id="over" style="position:absolute; width:100%; height:100%">
+                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.OpenSoon" src="../../../images/Status/OpenSoon.png" />
+                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.InAction" src="../../../images/Status/InProgress.png" />
+                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.Rescheduled" src="../../../images/Status/Rescheduled.png" />
+                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.ItemSold" src="../../../images/Status/Sold.png" />
+                    </div>
                     <h1>{{auction.CurrentAmount}}</h1>
                 </div>
             </div>

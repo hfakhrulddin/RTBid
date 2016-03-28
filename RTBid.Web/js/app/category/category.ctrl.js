@@ -2,11 +2,8 @@
 
     //need to fixed CR!!!!!!
     function activate() {
-
-        $scope.products = CategoryResource.query();
+        $scope.auctions = CategoryResource.query();
     }
 
     activate();
-
-
 });

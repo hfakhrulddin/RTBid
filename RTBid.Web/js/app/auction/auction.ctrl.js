@@ -55,14 +55,14 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
     //}, 90000000);
 
     $rootScope.$on('rtb.auctionStarted', function (event, auctionId) {
-        $scope.checked = false;
+        $scope.status = 2 ;
         $scope.soldImg = false;
             toastr.success("The Auction Has been Started");
             console.log('Started!!!');
         });
     
     $rootScope.$on('rtb.auctionFinished', function (event, auctionId) {
-        $scope.checked = true;
+        $scope.status = 3;
         $scope.soldImg = true;
             toastr.info("The Auction Has been Finished");
             console.log('Finished!!!');

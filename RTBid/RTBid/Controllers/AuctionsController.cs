@@ -109,6 +109,11 @@ namespace RTBid.Controllers
             dbAuction.RTBidUsers.Add(new UserAuction { RTBidUser = CurrentUser });// attach the user to the auction 
             dbAuction.ClosedTime = dbAuction.StartTime.AddHours(1);// Set the expected end time if no bid happened
 
+            dbAuction.OpenSoon = true;
+            dbAuction.InAction = false;
+            dbAuction.ItemSold = false;
+            dbAuction.Rescheduled = false;
+
             _auctionRepository.Add(dbAuction);
             _unitOfWork.Commit();
 

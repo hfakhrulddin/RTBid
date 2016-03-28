@@ -92,6 +92,14 @@
     <Compile Include="Migrations\201603252217493_new6.Designer.cs">
       <DependentUpon>201603252217493_new6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603272139149_new7.cs" />
+    <Compile Include="Migrations\201603272139149_new7.Designer.cs">
+      <DependentUpon>201603272139149_new7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603280515568_new8.cs" />
+    <Compile Include="Migrations\201603280515568_new8.Designer.cs">
+      <DependentUpon>201603280515568_new8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
@@ -140,6 +148,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603252217493_new6.resx">
       <DependentUpon>201603252217493_new6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603272139149_new7.resx">
+      <DependentUpon>201603272139149_new7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603280515568_new8.resx">
+      <DependentUpon>201603280515568_new8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

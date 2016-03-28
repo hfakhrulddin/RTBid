@@ -384,3 +384,47 @@
 //        alert("This is a demo.\n :-)");
 //    });
 //});
+
+
+//<!--<div class="profile-pane">
+//        <div>
+//            <div ng-repeat="auction in auctions" class="tab-content col-lg-12 active tab-pane " id="profile" role="tabpanel" >
+//                <div >
+//                    <div class="header">
+//                        <h4>Product Information</h4>
+//                    </div>
+//                    <div class="content">
+//                        <div class="row">
+//                            <img class="col-sm-3 col-sm-offset-1" src="http://lorempixel.com/420/420/city">
+//                            <div class="col-sm-4">
+//                                <h4>Product : {{auction.Product.Name}}</h4>
+//                                <h4>Description : {{auction.Product.Description}}</h4>
+//                                <h4>Category : {{auction.Product.Category.CategoryName}}</h4>
+//                                <h4>Shipping : $ {{auction.Product.ShippingCost}}</h4>
+//                            </div>
+//                        </div>
+//                        <div class="row">
+//                            <h4 class="col-sm-3 col-sm-offset-1 col">Price : $ {{auction.Product.SellingPrice}}</h4>
+//                            <h4 class="col-sm-4 col">Start Bidding : $ {{auction.StartBid}}</h4>
+//                            <div>
+//                                <a class="btn btn-primary rbtn" href="/#/app/auction/{{auction.AuctionId}}" role="button"><h4>Enter the Auction</h4></a>
+//                            </div>
+
+//                            <h3 class="col-sm-10 col-sm-offset-1 title">Product Owner</h3>
+//                            <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
+//                                <div id="pane1" class="cause-info">
+//                                    <div>
+//                                        <img src="http://lorempixel.com/420/420/people">
+//                                        <div>
+//                                            <h4>{{auction.Product.RTBidUser.UserName}}</h4>
+//                                            <h4>{{auction.Product.RTBidUser.Address}}</h4>
+//                                        </div>
+//                                    </div>
+//                                </div>
+//                            </div>
+//                        </div>
+//                    </div>
+//                </div>
+//            </div>
+//        </div>
+//</div>-->
