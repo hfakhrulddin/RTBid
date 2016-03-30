@@ -24,3 +24,5 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new5.resour
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new6.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new7.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new8.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new9.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.AddIconFieldToCategory.resources

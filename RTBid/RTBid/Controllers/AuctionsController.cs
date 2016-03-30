@@ -14,6 +14,7 @@ using RTBid.Core.Infrastructure;
 using RTBid.Data.Repository;
 using RTBid.Core.Models;
 using AutoMapper;
+using System.Collections;
 
 namespace RTBid.Controllers
 {
@@ -46,14 +47,21 @@ namespace RTBid.Controllers
                 return NotFound();
             }
 
-            if (auction.ActualClosedTime <= DateTime.Now) // Find a way to not allow the user to access the aution before it statrs???
-            {
+            //if (auction.ActualClosedTime <= DateTime.Now) // Find a way to not allow the user to access the aution before it statrs???
+            //{
 
-                return NotFound();
-            }
+            //    return NotFound();
+            //}
 
 
             return Ok(Mapper.Map<AuctionModel>(auction));
+        }
+
+        // GET: api/auctionsByCategory/id
+        [Route("api/auctionsByCategory/id={id}")]
+        public IEnumerable GetCategoryByName(int id)
+        {
+            return Mapper.Map<IEnumerable<AuctionModel>>(_auctionRepository.GetWhere(a => a.Product.CategoryId == id));
         }
 
         // PUT: api/Auctions/5

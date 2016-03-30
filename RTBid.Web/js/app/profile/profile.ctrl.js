@@ -1,10 +1,20 @@
-﻿angular.module('app').controller('ProfileController', function ($scope, ProfileResource) {
+﻿angular.module('app').controller('ProfileController', function ($scope, $stateParams, apiUrl, $http, ProfileResource) {
 
     function activate() {
-        ProfileResource.getCurrentUser().then(function (response) {
-            $scope.user = response;
-        });
-
+        if ($stateParams.id) {
+            $http.get(apiUrl + 'accounts/user/' + $stateParams.id)
+                 .success(function (data) {
+                     $scope.user = data;
+                 })
+                 .error(function () {
+                     $scope.user = null;
+                 });
+            $scope.blockUpdate = true;
+        } else {
+            ProfileResource.getCurrentUser().then(function (response) {
+                $scope.user = response;
+            });
+        }
 
         //ProfileResource.getReviewsForUser().then(function (response) {
         //    $scope.reviews = response;

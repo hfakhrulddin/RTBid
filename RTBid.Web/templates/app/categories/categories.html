@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <ul class="dashboard-tabs">
-                    <li class="active">
-                        <a href="/#/app/category" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
-                            <span class="glyphicon glyphicon-book"></span>
-                            <h4>Books</h4>
+                    <li class="active" ng-repeat="category in categories">
+                        <a ng-href="#/app/category/{{category.CategoryId}}" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
+                            <span class="glyphicon {{category.IconName}}"></span>
+                            <h4>{{category.CategoryName}}</h4>
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="/#/app/category" class="btn" aria-controls="profile" role="tab" data-toggle="tab">
                             <span class="glyphicon glyphicon-camera"></span>
                             <h4>Electronics</h4>
@@ -64,7 +64,7 @@
                             <span class="glyphicon glyphicon-random"></span>
                             <h4>Others</h4>
                         </a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>

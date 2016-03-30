@@ -7,7 +7,7 @@
 
 /*container design*/
 .control-label{float: left;}
-.container .inner{width: 480px; margin: 100px auto; border : 1px solid none; background: rgba(55,55,55, 0.4); padding: 10px; -webkit-transform: skew(30deg,10deg);-moz-transform: skew(30deg,10deg); -o-transform: skew(30deg,10deg); transition-duration: 0.7s;}
+.container .inner{width: 480px; margin: 100px auto; border : 1px solid none; background: rgba(55,55,55, 0.4); padding: 10px; -webkit-transform: skew(0deg,0deg);-moz-transform: skew(0deg,0deg); -o-transform: skew(0deg,0deg); transition-duration: 3s;}
 .container .inner:hover{-webkit-transform:skew(0deg,0deg); -moz-transform:skew(0deg,0deg);-o-transform:skew(0deg,0deg);transition-duration: 0.7s; background: transparent;}
 .inner h1{color:white; font-family: calibri, arial; font-weight: bold; text-align: center; font-size: 40px}
 .inner h3{color: white; font-size: 18px; font-family: calibri; text-align: center; margin-top: -5px}

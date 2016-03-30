@@ -11,6 +11,7 @@ namespace RTBid.Core.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
+        public string IconName { get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

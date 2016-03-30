@@ -32,6 +32,7 @@ namespace RTBid.Core.Domain
         public DateTime? StartedTime { get; set; }
         public DateTime? ClosedTime { get; set; }
         public DateTime? ActualClosedTime { get; set; }
+        public DateTime? RemainingTime { get; set; }
         public decimal StartBid { get; set; }
 
         public Status Status { get; set; }

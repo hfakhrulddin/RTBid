@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
+using RTBid.Core.Domain;
 using RTBid.Data.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -38,67 +39,79 @@ namespace RTBid.Watchdog
                 foreach (var auction in db.Auctions.ToList())
                 {
                     //_auctionHub.Invoke("pageStartUpServer", auction.AuctionId, auction.ClosedTime, auction.Bids.Last().CurrentAmount);
-                    try { 
-                    // check if auction started
-                    if (auction.StartTime > DateTime.Now || auction.ActualClosedTime <= DateTime.Now)
+                    try
                     {
-                        continue;
-                    }
-                    else
-                    {
-                        if (auction.StartTime <= DateTime.Now && auction.StartedTime == null)
+                        // check if auction started
+                        if (auction.StartTime > DateTime.Now || auction.ActualClosedTime <= DateTime.Now)
                         {
+                            //auction.RemainingTime = auction.StartTime - DateTime.Now;
+                            continue;
+                        }
+                        else
+                        {
+                            if (auction.StartTime <= DateTime.Now && auction.StartedTime == null)
+                            {
                                 // this is a bottleneck that needs to be made async (DataBase)
                                 auction.StartedTime = DateTime.Now;
                                 auction.OpenSoon = false;
                                 auction.InAction = true;
+                                auction.Status = Status.InAction;
 
                                 db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
 
-                            db.SaveChanges();
+                                db.SaveChanges();
 
-                            Console.WriteLine("\tTelling clients that auction started");
-                            _auctionHub.Invoke("tellClientsThatAuctionStarted", auction.AuctionId);
+                                Console.WriteLine("\tTelling clients that auction started");
+                                _auctionHub.Invoke("tellClientsThatAuctionStarted", auction.AuctionId);
 
-                            continue;
-                        }
+                                continue;
+                            }
 
-                        // check if auction ended
-                        if (auction.ClosedTime <= DateTime.Now && auction.ActualClosedTime == null) // we also need to store the "actualclosedtime"
-                        {
-                            auction.ActualClosedTime = DateTime.Now;
+                            // check if auction ended
+                            if (auction.ClosedTime <= DateTime.Now && auction.ActualClosedTime == null) // we also need to store the "actualclosedtime"
+                            {
+                                auction.ActualClosedTime = DateTime.Now;
 
                                 auction.InAction = false;
                                 auction.ItemSold = true;
-            
+
                                 db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
-                            db.SaveChanges();
+                                db.SaveChanges();
 
-                            Console.WriteLine("\tTelling clients that auction ended");
-                            _auctionHub.Invoke("tellClientsThatAuctionEnded", auction.AuctionId);
-                        }
+                                Console.WriteLine("\tTelling clients that auction ended");
+                                _auctionHub.Invoke("tellClientsThatAuctionEnded", auction.AuctionId);
 
-                        // check if there any new bids to let clients know about
-                        if (_mostRecentBidFor.Keys.Contains(auction.AuctionId))
-                        {
-                            if (_mostRecentBidFor[auction.AuctionId] != auction.Bids.Last().TimeStamp)
-                            {
-                                Console.WriteLine("\tTelling clients about a new bid");
-                                _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
-                                _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.StartBid);
+                                if (auction.Bids.Any())
+                                {
+                                    Console.WriteLine("\tTelling {0} that they won the auction");
+
+                                    var winnerId = auction.Bids.Last().UserId;
+
+                                    _auctionHub.Invoke("tellWinnerThatTheyWon", winnerId);
+                                }
                             }
-                        }
-                        else
-                        {
-                            if (auction.Bids.Count > 0)
+
+                            // check if there any new bids to let clients know about
+                            if (_mostRecentBidFor.Keys.Contains(auction.AuctionId))
                             {
-                                Console.WriteLine("\tTelling clients about a new bid");
-                                _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
-                                _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.Bids.Last().CurrentAmount);
+                                if (_mostRecentBidFor[auction.AuctionId] != auction.Bids.Last().TimeStamp)
+                                {
+                                    Console.WriteLine("\tTelling clients about a new bid");
+                                    _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
+                                    _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.StartBid);
+                                }
+                            }
+                            else
+                            {
+                                if (auction.Bids.Count > 0)
+                                {
+                                    Console.WriteLine("\tTelling clients about a new bid");
+                                    _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
+                                    _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.Bids.Last().CurrentAmount);
+                                }
                             }
                         }
                     }
-                }
                     catch { }
                 }
             }

@@ -70,8 +70,8 @@
             </div>
             <div class="panel-footer">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Type your message here..." id="message" ng-model="message">
-                    <span class="input-group-btn">
+                    <input type="text" class="form-control" placeholder="Type your message here..." id="message" ng-model="message" ng-keypress="($event.charCode==13)?sendChat():return" >
+                    <span class="input-group-btn" >
                         <button class="btn btn-warning" id="sendChat" ng-click="sendChat()">Send</button>
                     </span>
                 </div>
@@ -108,33 +108,37 @@
                                     <td>Price:</td>
                                     <td class="text-right">{{auction.Product.SellingPrice | currency:'$'}}</td>
                                 </tr>
-                                <tr>
-                                    <td>Starting Value:</td>
-                                    <td class="text-right">{{auction.StartBid | currency:'$'}}</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
+
                 <div>
-                    <button class="btn btn-primary btn-block text-center" ng-model="checked" ng-disabled="checked" ng-click="sendBid()">
+                    <button class="btn btn-primary btn-block text-center" ng-model="auction.ItemSold" ng-disabled="auction.ItemSold" ng-click="sendBid()">
                      <h4>New Bid !!!</h4>
                         </button>
                     </div>
-                <div id="pane1" class="well text-center">
-                    <h4 class="fa fa-clock-o"> Time Remaining</h4>
-                    <h1>OO:OO:{{countDowntext}}</h1>
-                </div>
-                <div id="pane1" class="well text-center">
-                    <h4 class="fa fa-dollar"> Current Bid</h4>
-                    <div id="over" style="position:absolute; width:100%; height:100%">
-                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.OpenSoon" src="../../../images/Status/OpenSoon.png" />
-                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.InAction" src="../../../images/Status/InProgress.png" />
-                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.Rescheduled" src="../../../images/Status/Rescheduled.png" />
-                        <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.ItemSold" src="../../../images/Status/Sold.png" />
+
+                    <div id="pane1" class="well text-center" ng-show="auction.InAction">
+                        <h4 class="fa fa-clock-o"> Time Remaining</h4>
+                        <h1>OO:OO:{{countDowntext}}</h1>
                     </div>
-                    <h1>{{auction.CurrentAmount}}</h1>
-                </div>
+                    <div id="pane1" class="well text-center" ng-show="auction.OpenSoon">
+                        <h4 class="fa fa-clock-o">This Auction will start at :{{auction.StartTime |date:'medium'}}</h4>
+                    </div>
+
+                    <div id="pane1" class="well text-center">
+                        <div id="over" style="position:absolute; width:100%; height:100%">
+                            <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.OpenSoon" src="../../../images/Status/OpenSoon.png" />
+                            <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.InAction" src="../../../images/Status/InProgress.png" />
+                            <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.Rescheduled" src="../../../images/Status/Rescheduled.png" />
+                            <img class="img-rounded img-responsive col-sm-3 cover" ng-show="auction.ItemSold" src="../../../images/Status/Sold.png" />
+                        </div>
+                        <h1 class="fa fa-dollar" ng-show="auction.OpenSoon"> Start Value : {{auction.StartBid | currency:'$'}}</h1>
+                        <h1 class="fa fa-dollar" ng-show="auction.ItemSold"> Sold Price : {{auction.StartBid | currency:'$'}}</h1>
+                        <h1 class="fa fa-dollar" ng-show="auction.InAction"> Current Bid : {{auction.CurrentAmount | currency:'$'}}</h1>
+                    </div>
+                
             </div>
         </div>
     </div>

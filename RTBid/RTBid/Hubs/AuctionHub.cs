@@ -36,6 +36,11 @@ namespace RTBid.Hubs
         {
             Clients.All.newBid(timeStamp, currentAmount);
         }
+
+        public void tellWinnerThatTheyWon(int userId)
+        {
+            Clients.All.winnerIs(userId);
+        }
         #endregion
 
         #region OnlieUsers

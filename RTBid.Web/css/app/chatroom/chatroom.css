@@ -325,18 +325,6 @@ a.small {
   overflow: hidden;
 }
 
-#chatPanel .panel-body {
-    min-height: 284px;
-    max-height: 284px;
-    overflow: auto;
-}
-
-#onlineUsersPanel .panel-body {
-    min-height: 538px;
-    max-height: 538px;
-    overflow: auto;
-}
-
 #bottom2 {
 }
 /**/
@@ -352,7 +340,19 @@ a.small {
 
 .panel-body {
   
-    min-height: 538px;
-    max-height: 538px;
+    min-height: 480px;
+    max-height: 480px;
+    overflow: auto;
+}
+
+#chatPanel .panel-body {
+    min-height: 227px;
+    max-height: 227px;
+    overflow: auto;
+}
+
+#onlineUsersPanel .panel-body {
+    min-height: 480px;
+    max-height: 480px;
     overflow: auto;
 }

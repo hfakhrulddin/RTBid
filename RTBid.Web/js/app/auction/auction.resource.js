@@ -17,7 +17,11 @@ angular.module('app').factory('BidResource', function (apiUrl, $resource) {
     return $resource(apiUrl + 'bids/:bidId', { bidId: '@BidId' }, {
         'update': {
             method: 'PUT'
-        }
+        },
+                    'get': {
+        method: 'GET',
+        isArray: true
+}
     });
 });
 

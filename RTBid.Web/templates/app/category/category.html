@@ -1,123 +1,85 @@
-﻿<!--<div class="profile-pane">
-    <div>
-        <div ng-repeat="product in products" class="tab-content col-lg-12 active tab-pane " id="profile" role="tabpanel">
-            <div>
-                <div class="header">
-                    <h4>Product Information</h4>
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <img class="col-sm-3 col-sm-offset-1" src="http://lorempixel.com/420/420/city">
-                        <div class="col-sm-4">
-                            <h4>Product : {{product.Name}}</h4>
-                            <h4>Description : {{product.Description}}</h4>
-                            <h4>Product ID : {{product.ProductId}}</h4>
-                            <h4>Category ID : {{product.CategoryId}}</h4>
-                            <h4>Owner ID : {{product.UserId}}</h4>
-                            <h4>Shipping : $ {{product.ShippingCost}}</h4>
-                        </div>
+﻿<div class="alert alert-info" ng-hide="auctions.length">
+    <strong>Oops!</strong> Nobody has created an auction in category. Be the first to create one!
+</div>
+
+<div class="row" ng-show="auctions.length">
+    <div class="col-lg-6" ng-repeat="auction in auctions">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Product Information</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img class="img-rounded img-responsive" src="http://lorempixel.com/125/125/technics">
                     </div>
-                    <div class="row">
-                        <h4 class="col-sm-3 col-sm-offset-1 col">Price : $ {{product.SellingPrice}}</h4>
-                        <h4 class="col-sm-4 col">Start Bidding : $ {{product.StartBid}}</h4>
-                        <div>
-                            <a class="btn btn-primary rbtn" href="/#/app/auction" role="button"><h4>Enter the Auction</h4></a>
-                        </div>
-                        <h3 class="col-sm-10 col-sm-offset-1 title">Product Owner</h3>
-                        <div id="supportedCauses" class="col-sm-10 col-sm-offset-1">
-                            <div id="pane1" class="cause-info">
-                                <div>
-                                    <img src="http://lorempixel.com/420/420/people">
-                                    <div>
-                                        <h4>[Name]</h4>
-                                        <h4>[Email]</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-<div class="col-lg-6" ng-repeat="auction in auctions">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h4>Product Information</h4>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-3">
-                    <img class="img-rounded img-responsive" src="http://lorempixel.com/125/125/technics">
-                </div>
-                <div class="col-sm-9">
-                    <img class="img-rounded img-responsive" ng-show="soldImg" src="../../../55.jpg" />
-                    <table class="table table-user-information">
-                        <tbody>
-                            <tr>
-                                <td>Product Name: </td>
-                                <td class="text-right">{{auction.Product.Name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Description: </td>
-                                <td class="text-right">{{auction.Product.Description}}</td>
-                            </tr>
-                            <tr>
-                                <td>Category:</td>
-                                <td class="text-right">{{auction.Product.Category.CategoryName}}</td> <!-- this is an angular filter -->
-                            </tr>
-                            <tr>
-                                <td>Price:</td>
-                                <td class="text-right">{{auction.Product.SellingPrice | currency:'$'}}</td>
-                            </tr>
-                            <tr>
-                                <td>Starting Value:</td>
-                                <td class="text-right">{{auction.StartBid | currency:'$'}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div>
-                <a class="btn btn-primary btn-block text-center" href="/#/app/auction/{{auction.AuctionId}}" role="button">
-                    <h4>Enter the Auction !!!</h4>
-                </a>
-            </div>
-            <div id="pane1" class="well text-center">
-                <h4 class="fa fa-clock-o"> Time Remaining</h4>
-                <h1>OO:OO:{{countDowntext}}</h1>
-            </div>
-            <div>
-                <a class="btn btn-primary btn-block text-center">
-                    <h4>Current Bid</h4>
-                </a>
-            </div>
-            <div id="pane1" class="well text-center">
-                <h4 class="fa fa-dollar">{{auction.CurrentAmount}}</h4>
-            </div>
-
-            <a class="btn btn-primary btn-block text-center" role="button">
-                <h3 class="col-sm-10 col-sm-offset-1 title">Product Owner</h3>
-            </a>
-            <div id="pane1" class="well text-center">
-                <div id="pane1" class="cause-info">
-                    <div class="col-sm-12">
-                        <img class="img-rounded img-responsive col-sm-3" src="http://lorempixel.com/420/420/people">
-
-                        <table class="table-user-information col-sm-9">
+                    <div class="col-sm-9">
+                        <img class="img-rounded img-responsive" ng-show="soldImg" src="../../../55.jpg" />
+                        <table class="table table-user-information">
                             <tbody>
                                 <tr>
-                                    <td>Name: </td>
-                                    <td class="text-right">{{auction.Product.RTBidUser.UserName}}</td>
+                                    <td>Product Name: </td>
+                                    <td class="text-right">{{auction.Product.Name}}</td>
                                 </tr>
                                 <tr>
-                                    <td>Email Address: </td>
-                                    <td class="text-right">{{auction.Product.RTBidUser.Address}}</td>
+                                    <td>Description: </td>
+                                    <td class="text-right">{{auction.Product.Description}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td class="text-right">{{auction.Product.Category.CategoryName}}</td> <!-- this is an angular filter -->
+                                </tr>
+                                <tr>
+                                    <td>Price:</td>
+                                    <td class="text-right">{{auction.Product.SellingPrice | currency:'$'}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Starting Value:</td>
+                                    <td class="text-right">{{auction.StartBid | currency:'$'}}</td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-primary btn-block text-center" href="/#/app/auction/{{auction.AuctionId}}" role="button">
+                        <h4>Enter the Auction !!!</h4>
+                    </a>
+                </div>
+                <div id="pane1" class="well text-center">
+                    <h4 class="fa fa-clock-o"> Time Remaining</h4>
+                    <h1>OO:OO:{{countDowntext}}</h1>
+                </div>
+                <div>
+                    <a class="btn btn-primary btn-block text-center">
+                        <h4>Current Bid</h4>
+                    </a>
+                </div>
+                <div id="pane1" class="well text-center">
+                    <h4 class="fa fa-dollar">{{auction.CurrentAmount}}</h4>
+                </div>
+
+                <a class="btn btn-primary btn-block text-center" role="button">
+                    <h3 class="col-sm-10 col-sm-offset-1 title">Product Owner</h3>
+                </a>
+                <div id="pane1" class="well text-center">
+                    <div id="pane1" class="cause-info">
+                        <div class="col-sm-12">
+                            <img class="img-rounded img-responsive col-sm-3" src="http://lorempixel.com/420/420/people">
+
+                            <table class="table-user-information col-sm-9">
+                                <tbody>
+                                    <tr>
+                                        <td>Name: </td>
+                                        <td class="text-right">{{auction.Product.RTBidUser.UserName}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email Address: </td>
+                                        <td class="text-right">{{auction.Product.RTBidUser.Address}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

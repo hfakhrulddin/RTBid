@@ -100,6 +100,14 @@
     <Compile Include="Migrations\201603280515568_new8.Designer.cs">
       <DependentUpon>201603280515568_new8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603281714110_new9.cs" />
+    <Compile Include="Migrations\201603281714110_new9.Designer.cs">
+      <DependentUpon>201603281714110_new9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603300051317_AddIconFieldToCategory.cs" />
+    <Compile Include="Migrations\201603300051317_AddIconFieldToCategory.Designer.cs">
+      <DependentUpon>201603300051317_AddIconFieldToCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
@@ -154,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603280515568_new8.resx">
       <DependentUpon>201603280515568_new8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603281714110_new9.resx">
+      <DependentUpon>201603281714110_new9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603300051317_AddIconFieldToCategory.resx">
+      <DependentUpon>201603300051317_AddIconFieldToCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

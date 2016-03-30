@@ -19,6 +19,9 @@
                 'startUp': function (auctionId, colseTime, currentAmount) {
                     $rootScope.$broadcast('rtb.startUp', auctionId, colseTime, currentAmount);
                 },
+                'winnerIs': function (winnerId) {
+                    
+                }
                 //'heartbeat': function () {
                 //    $rootScope.$broadcast('rtb.heartbeat');
                 //},

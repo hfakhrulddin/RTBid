@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RTBid.Core.Domain;
 using RTBid.Core.Infrastructure;
 using RTBid.Core.Models;
 using RTBid.Core.Repository;
@@ -21,12 +22,14 @@ namespace RTBid.Controllers
         private readonly IPaymentService _paymentService;
         private readonly IAuthorizationRepository _authRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IRTBidUserRepository _rtbidUserRepository;
 
         public AccountsController(IPaymentService paymentService, IAuthorizationRepository authRepository, IRTBidUserRepository rtbidUserRepository, IUnitOfWork unitOfWork) : base(rtbidUserRepository)
         {
             _paymentService = paymentService;
             _authRepository = authRepository;
             _unitOfWork = unitOfWork;
+            _rtbidUserRepository = rtbidUserRepository;
         }
 
         [AllowAnonymous]
@@ -61,6 +64,13 @@ namespace RTBid.Controllers
             return Ok(Mapper.Map<RTBidUserModel.Profile>(CurrentUser));
         }
 
+        [Route("api/accounts/user/{userId}")]
+        [ResponseType(typeof(RTBidUserModel.Profile))]
+        public IHttpActionResult GetUser(int userId)
+        {
+            return Ok(Mapper.Map<RTBidUserModel>(_rtbidUserRepository.GetById(userId)));
+        }
+
         [Route("api/accounts/currentuser")]
         [HttpPut]
         public IHttpActionResult UpdateCurrentUser(string id, RTBidUserModel.Profile user)
@@ -86,13 +96,18 @@ namespace RTBid.Controllers
             return Ok();
         }
 
-        //[Route("api/accounts/currentuser")]
-        //[HttpGet]
-        //[ResponseType(typeof(UserModel))]
-        //public IHttpActionResult GetCurrentUser()
-        //{
-        //    return Ok(Mapper.Map<UserModel>(CurrentUser));
-        //}
+        [AllowAnonymous]
+        [Route("api/accounts/id={id}")]
+        public IHttpActionResult GetAccountById(int id)
+        {
+            RTBidUser rtBidUser = _rtbidUserRepository.GetById(id);
 
+            if (rtBidUser == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(rtBidUser);
+        }
     }
 }
