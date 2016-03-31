@@ -1,6 +1,6 @@
 ﻿angular.module('app').controller('AuctionController',
 function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routeParams, BidResource, AuctionResource, ProfileResource,
-    $stateParams, $location, $anchorScroll, ProductResource) {
+    $stateParams, $location, $anchorScroll, ProductResource, $state, SellingResource) {
 
     function activate() {
         ProfileResource.getCurrentUser().then(function (response) {
@@ -9,6 +9,7 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
 
         $scope.auctions = AuctionResource.query();
         $scope.bids = BidResource.query();
+        $scope.products = ProductResource.query();
 
         $scope.auction = AuctionResource.get({ auctionId: $stateParams.auctionId });
         $scope.product = ProductResource.get({ productId: $stateParams.productId });
@@ -43,20 +44,6 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
    
         });
     
-    /////Scroll
-    $('#sendChat').click(function () {
-        $location.hash('bottom');
-        $anchorScroll();
-    });
-
-    ///HB to Join the room
-    //var hbcounter = 0;
-    //$interval(function () {
-    //    //auctionProxy.join($scope.user.UserName);
-    //    hbcounter++;
-    //    if (hbcounter > 1000) { hbcounter = 0 } else { $scope.heartpulseShow = hbcounter; };
-    //}, 90000000);
-
     $rootScope.$on('rtb.auctionStarted', function (event, auctionId) {
         activate();
         $scope.auction.OpenSoon = false;
@@ -86,16 +73,8 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
     $scope.auction.CurrentAmount = $scope.auction.StartBid;
     $scope.countDowntext = $scope.auction.ClosedTime;
 
-    //$rootScope.$on('rtb.heartbeat', function (event) {
-    //    console.log('HEARTBEAT!!!');
-    //});
-
-    //$rootScope.$on('rtb.onlineUsers', function (event, usersList) {
-    //    $scope.usersList = usersList;
-    //});
-
     /////CountDown Timer Not Angular
-    $rootScope.$on('rtb.newBid', function (event, auctionId, currentAmount) {
+    $rootScope.$on('rtb.newBid', function (event, auctionId,time, currentAmount) {
         if ($scope.auction.AuctionId == auctionId) {
             toastr.info('New Bid');
 
@@ -119,5 +98,39 @@ function (auctionProxy, $scope, $rootScope, $timeout, $interval, $http, $routePa
             countDowner()
         }
     });
+
+    $rootScope.$on('rtb.winnerIs', function (event, auctionId, winnerId) {
+        if ($scope.user.Id == winnerId) {
+            
+
+            $state.go('app.payment');
+            console.log('You Win!!!');
+        }
+        else {
+            $state.go('app.dashboard');
+        }
+    });
+
+    //$rootScope.$on('rtb.heartbeat', function (event) {
+    //    console.log('HEARTBEAT!!!');
+    //});
+
+    //$rootScope.$on('rtb.onlineUsers', function (event, usersList) {
+    //    $scope.usersList = usersList;
+    //});
+
+    /////Scroll
+    $('#sendChat').click(function () {
+        $location.hash('bottom');
+        $anchorScroll();
+    });
+
+    ///HB to Join the room
+    //var hbcounter = 0;
+    //$interval(function () {
+    //    //auctionProxy.join($scope.user.UserName);
+    //    hbcounter++;
+    //    if (hbcounter > 1000) { hbcounter = 0 } else { $scope.heartpulseShow = hbcounter; };
+    //}, 90000000);
 
 });

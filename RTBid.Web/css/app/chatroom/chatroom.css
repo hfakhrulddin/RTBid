@@ -340,8 +340,8 @@ a.small {
 
 .panel-body {
   
-    min-height: 480px;
-    max-height: 480px;
+    min-height: 410px;
+    max-height: 4800px;
     overflow: auto;
 }
 

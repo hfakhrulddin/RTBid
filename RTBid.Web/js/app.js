@@ -19,6 +19,7 @@ angular.module('app').config(function ($stateProvider, $urlRouterProvider, $http
                     .state('app.list', { url: '/list', templateUrl: '/templates/app/chatroom/list.html',controller: 'ListController' })
                     .state('app.details', { url: '/details/:itemId', templateUrl: '/templates/app/chatroom/details.html', controller: 'DetailsController' })
                     .state('app.account', { url: '/account', templateUrl: '/templates/app/account/account.html', controller: 'AccountController' })
+                    .state('app.payment', { url: '/payment/:auctionId', templateUrl: '/templates/app/payment/payment.html', controller: 'PaymentController' })
 
                         .state('app.selling', { url: '/selling', abstract: true, template: '<ui-view/>' })
                         .state('app.selling.grid', { url: '/grid', templateUrl: '/templates/app/selling/selling.grid.html', controller: 'SellingGridController' })

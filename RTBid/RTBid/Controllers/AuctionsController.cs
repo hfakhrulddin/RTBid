@@ -29,14 +29,14 @@ namespace RTBid.Controllers
             _auctionRepository = auctionRepository;
             _unitOfWork = unitOfWork;
         }
-    
+
 
         // GET: api/Auctions
         public IEnumerable<AuctionModel> GetAuctions()
         {
+            //return Mapper.Map<IEnumerable<AuctionModel>>(_auctionRepository.GetWhere(a => a.Product.RTBidUser.UserName == User.Identity.Name));
             return Mapper.Map<IEnumerable<AuctionModel>>(_auctionRepository.GetAll());
         }
-
         // GET: api/Auctions/5
         [ResponseType(typeof(Auction))]
         public IHttpActionResult GetAuction(int id)

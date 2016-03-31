@@ -41,7 +41,7 @@
                 <h4 class="fa fa-clock-o"> Time Remaining : OO:OO:{{countDowntext}}</h4>
             </div>
             <div id="pane1" class="well text-center" ng-show="auction.OpenSoon">
-                <h4 class="fa fa-clock-o">This Auction will start at :{{auction.StartTime |date:'medium'}}</h4>
+                <h4 class="fa fa-clock-o"> This Auction will start at :{{auction.StartTime |date:'medium'}}</h4>
             </div>
             <div>
                 <div class="well text-center">
@@ -55,8 +55,8 @@
                    </div>
 
                 </div>
-                <a class="btn btn-primary btn-block text-center" role="button">
-                    <h3 class="col-sm-10 col-sm-offset-1 title" ng-href="#/app/account/{{product.ProductId}}">Product Owner</h3>
+                <a class="btn btn-primary btn-block text-center" role="button" ng-href="/#/app/profile?id/{{auction.Product.RTBidUser.Id}}">
+                    <h3 class="col-sm-10 col-sm-offset-1 title">Product Owner</h3>
                 </a>
                 <div id="pane1" class="well text-center">
                     <div id="pane1"class="cause-info">
@@ -71,7 +71,7 @@
                                     </tr>
                                     <tr>
                                         <td>Email Address: </td>
-                                        <td class="text-right">{{auction.Product.RTBidUser.Address}}</td>
+                                        <td class="text-right">{{auction.Product.RTBidUser.Email}}</td>
                                     </tr>
                                 </tbody>
                             </table>

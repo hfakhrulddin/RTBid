@@ -7,8 +7,8 @@
                 'newChatMessage': function (auctionId, message, userName) {
                     $rootScope.$broadcast('rtb.newChatMessage', message, userName);
                 },
-                'newBid': function (auctionId, currentAmount) {
-                    $rootScope.$broadcast('rtb.newBid', auctionId, currentAmount);
+                'newBid': function (auctionId, time, currentAmount) {
+                    $rootScope.$broadcast('rtb.newBid', auctionId, time, currentAmount);
                 },
                 'auctionStarted': function (auctionId) {
                     $rootScope.$broadcast('rtb.auctionStarted', auctionId);
@@ -19,8 +19,8 @@
                 'startUp': function (auctionId, colseTime, currentAmount) {
                     $rootScope.$broadcast('rtb.startUp', auctionId, colseTime, currentAmount);
                 },
-                'winnerIs': function (winnerId) {
-                    
+                'winnerIs': function (auctionId, winnerId) {
+                    $rootScope.$broadcast('rtb.winnerIs', auctionId, winnerId);
                 }
                 //'heartbeat': function () {
                 //    $rootScope.$broadcast('rtb.heartbeat');
