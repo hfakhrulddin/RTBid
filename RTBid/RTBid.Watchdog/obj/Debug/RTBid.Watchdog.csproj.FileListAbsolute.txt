@@ -19,3 +19,6 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Watchdog\bin\Debug\Microsoft.AspNet.Identity.Cor
 C:\Div\Origin\RTBid\RTBid\RTBid.Watchdog\obj\Debug\RTBid.Watchdog.csprojResolveAssemblyReference.cache
 C:\Div\Origin\RTBid\RTBid\RTBid.Watchdog\obj\Debug\RTBid.Watchdog.exe
 C:\Div\Origin\RTBid\RTBid\RTBid.Watchdog\obj\Debug\RTBid.Watchdog.pdb
+C:\Div\Good RTBid\RTBid\RTBid\RTBid.Watchdog\bin\Debug\RTBid.Watchdog.exe.config
+C:\Div\Good RTBid\RTBid\RTBid\RTBid.Watchdog\obj\Debug\RTBid.Watchdog.exe
+C:\Div\Good RTBid\RTBid\RTBid\RTBid.Watchdog\obj\Debug\RTBid.Watchdog.pdb

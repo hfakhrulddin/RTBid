@@ -31,7 +31,7 @@ namespace RTBid.Controllers
         // GET: api/Products
         public IEnumerable<ProductModel> GetProducts()
         {
-            return Mapper.Map<IEnumerable<ProductModel>>(_productRepository.GetAll());
+            return Mapper.Map<IEnumerable<ProductModel>>(_productRepository.GetWhere(p => p.RTBidUser.UserName == User.Identity.Name));
         }
 
         // GET: api/Products/5
@@ -98,7 +98,8 @@ namespace RTBid.Controllers
             //db.Products.Add(product);
             //db.SaveChanges();
             var dbProduct = new Product(product);
-            //Product.UserId = CurrentUser.Id;
+            //dbProduct.RTBidUser.UserName.Add(CurrentUser );
+            dbProduct.UserId = CurrentUser.Id;
             _productRepository.Add(dbProduct);
             _unitOfWork.Commit();
 

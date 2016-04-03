@@ -44,7 +44,6 @@ namespace RTBid.Watchdog
                         // check if auction started
                         if (auction.StartTime > DateTime.Now || auction.ActualClosedTime <= DateTime.Now)
                         {
-                            //auction.RemainingTime = auction.StartTime - DateTime.Now;
                             continue;
                         }
                         else
@@ -55,7 +54,6 @@ namespace RTBid.Watchdog
                                 auction.StartedTime = DateTime.Now;
                                 auction.OpenSoon = false;
                                 auction.InAction = true;
-                                auction.Status = Status.InAction;
 
                                 db.Entry(auction).State = System.Data.Entity.EntityState.Modified;
 
@@ -87,7 +85,7 @@ namespace RTBid.Watchdog
 
                                     var winnerId = auction.Bids.Last().UserId;
 
-                                    _auctionHub.Invoke("tellWinnerThatTheyWon", winnerId);
+                                    _auctionHub.Invoke("tellWinnerThatTheyWon", auction.AuctionId, winnerId);
                                 }
                             }
 
@@ -98,7 +96,7 @@ namespace RTBid.Watchdog
                                 {
                                     Console.WriteLine("\tTelling clients about a new bid");
                                     _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
-                                    _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.StartBid);
+                                    _auctionHub.Invoke("tellClientsAboutNewBid",auction.AuctionId, auction.Bids.Last().TimeStamp, auction.StartBid);
                                 }
                             }
                             else
@@ -107,7 +105,7 @@ namespace RTBid.Watchdog
                                 {
                                     Console.WriteLine("\tTelling clients about a new bid");
                                     _mostRecentBidFor[auction.AuctionId] = auction.Bids.Last().TimeStamp;
-                                    _auctionHub.Invoke("tellClientsAboutNewBid", auction.Bids.Last().TimeStamp, auction.Bids.Last().CurrentAmount);
+                                    _auctionHub.Invoke("tellClientsAboutNewBid", auction.AuctionId, auction.Bids.Last().TimeStamp, auction.Bids.Last().CurrentAmount);
                                 }
                             }
                         }

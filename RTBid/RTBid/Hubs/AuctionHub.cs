@@ -32,14 +32,14 @@ namespace RTBid.Hubs
         }
 
         // receive from watchdog
-        public void tellClientsAboutNewBid(DateTime timeStamp, decimal currentAmount)
+        public void tellClientsAboutNewBid(int auctionId, DateTime timeStamp, decimal currentAmount)
         {
-            Clients.All.newBid(timeStamp, currentAmount);
+            Clients.All.newBid(auctionId, timeStamp, currentAmount);
         }
 
-        public void tellWinnerThatTheyWon(int userId)
+        public void tellWinnerThatTheyWon(int auctionId, int userId)
         {
-            Clients.All.winnerIs(userId);
+            Clients.All.winnerIs(auctionId, userId);
         }
         #endregion
 

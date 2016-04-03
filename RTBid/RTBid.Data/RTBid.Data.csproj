@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201603300051317_AddIconFieldToCategory.Designer.cs">
       <DependentUpon>201603300051317_AddIconFieldToCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603312252197_new10.cs" />
+    <Compile Include="Migrations\201603312252197_new10.Designer.cs">
+      <DependentUpon>201603312252197_new10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AuctionRepository.cs" />
@@ -168,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603300051317_AddIconFieldToCategory.resx">
       <DependentUpon>201603300051317_AddIconFieldToCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603312252197_new10.resx">
+      <DependentUpon>201603312252197_new10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
