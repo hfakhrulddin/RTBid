@@ -11,11 +11,6 @@ namespace RTBid.Core.Models
         public int Id { get; set; }
         public string UserName { get; set; }
 
-
-        // HUGE HUGE HUGE HUGE HUGE HUGE HUGE NOOOOOOOOO NO NO NO NO NO NO NO.
-        //public string PasswordHash { get; set; }
-        //public string SecurityStamp { get; set; }
-
         public string Address { get; set; }
 
         public DateTime CreatedDate { get; set; }

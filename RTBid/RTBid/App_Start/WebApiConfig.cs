@@ -30,7 +30,7 @@ namespace RTBid
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             // Call the Method below
             CreateMaps(); 
-            //Heart Beat for Hubs CR!!!
+       
         }
 
         public static void CreateMaps()

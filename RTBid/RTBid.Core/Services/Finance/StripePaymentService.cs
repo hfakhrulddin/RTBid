@@ -12,12 +12,12 @@ namespace RTBid.Core.Services.Finance
 {
     public class StripePaymentService : IPaymentService
     {
-        private readonly IRTBidUserRepository _wingmanUserRepository;
+        private readonly IRTBidUserRepository _rtbidUserRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public StripePaymentService(IRTBidUserRepository wingmanUserRepository, IUnitOfWork unitOfWork)
+        public StripePaymentService(IRTBidUserRepository rtbidUserRepository, IUnitOfWork unitOfWork)
         {
-            _wingmanUserRepository = wingmanUserRepository;
+            _rtbidUserRepository = rtbidUserRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -44,7 +44,7 @@ namespace RTBid.Core.Services.Finance
             {
                 user.AccountBalance = user.AccountBalance.GetValueOrDefault() + numberOfKeys;
 
-                _wingmanUserRepository.Update(user);
+                _rtbidUserRepository.Update(user);
 
                 _unitOfWork.Commit();
             }

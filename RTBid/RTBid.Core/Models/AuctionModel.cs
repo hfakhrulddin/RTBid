@@ -29,7 +29,7 @@ namespace RTBid.Core.Models
         public bool ItemSold { get; set; }
         public bool Rescheduled { get; set; }
      
-        public Status Status { get; set; }
+ 
 
         public ProductModel Product { get; set; }
     }

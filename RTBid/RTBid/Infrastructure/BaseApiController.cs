@@ -10,18 +10,18 @@ namespace RTBid.Infrastructure
 {
     public class BaseApiController :ApiController
     {
-        protected readonly IRTBidUserRepository _wingmanUserRepository;
-        /// ///////////////////
-        public BaseApiController(IRTBidUserRepository wingmanUserRepository)
+        protected readonly IRTBidUserRepository _rtbidUserRepository;
+     
+        public BaseApiController(IRTBidUserRepository rtbidUserRepository)
         {
-            _wingmanUserRepository = wingmanUserRepository;
+            _rtbidUserRepository = rtbidUserRepository;
         }
-        ///
+      
         protected RTBidUser CurrentUser
         {
             get
             {
-                return _wingmanUserRepository.GetFirstOrDefault(u => u.UserName == User.Identity.Name);
+                return _rtbidUserRepository.GetFirstOrDefault(u => u.UserName == User.Identity.Name);
             }
         }
     }

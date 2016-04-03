@@ -45,7 +45,5 @@ namespace RTBid.Core.Domain
             AttachmentUrl = model.AttachmentUrl;
         }
 
-
-
         }
     }
