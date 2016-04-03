@@ -27,3 +27,4 @@ C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new8.resour
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new9.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.AddIconFieldToCategory.resources
 C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.new10.resources
+C:\Div\Origin\RTBid\RTBid\RTBid.Data\obj\Debug\RTBid.Data.Migrations.RemoveStatusenum.resources
